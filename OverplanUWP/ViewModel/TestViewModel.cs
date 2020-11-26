@@ -12,6 +12,18 @@ namespace OverplanUWP.ViewModel
 {
     public partial class Medarbejdersplan
     {
+        public Medarbejdersplan(int medarbejderID, string navn, string adresse, int telefon)
+        {
+            MedarbejderID = medarbejderID;
+            Navn = navn;
+            Adresse = adresse;
+            Telefon = telefon;
+        }
+        public Medarbejdersplan()
+        {
+
+        }
+
         public int MedarbejderID { get; set; }
 
         public string Navn { get; set; }
@@ -34,6 +46,8 @@ namespace OverplanUWP.ViewModel
 
         public ObservableCollection<Medarbejdersplan> postMedarbejdersplan { get; set; }
         public ObservableCollection<Virksomhed> postVirksomhed { get; set; }
+        public ObservableCollection<Medarbejdersplan> getMedarbejdersplan { get; set; }
+        public ObservableCollection<Medarbejdersplan> getMedarbejderCL { get; set; }
 
         public int medarbejderID { get; set; }
         public string navn { get; set; }
@@ -42,15 +56,18 @@ namespace OverplanUWP.ViewModel
 
         public RelayCommand AddMedarbejder { get; set; }
         public RelayCommand AddVirksomhed { get; set; }
+        public RelayCommand HentMedarbejder { get; set; }
 
 
         public TestViewModel()
         {
             postMedarbejdersplan = new ObservableCollection<Medarbejdersplan>();
             postVirksomhed = new ObservableCollection<Virksomhed>();
+            getMedarbejdersplan = new ObservableCollection<Medarbejdersplan>();
 
             AddMedarbejder = new RelayCommand(PostMedarbejdersplan);
             AddVirksomhed = new RelayCommand(PostVirksomhed);
+            HentMedarbejder = new RelayCommand(GetMedarbejder);
 
         }
 
@@ -134,6 +151,57 @@ namespace OverplanUWP.ViewModel
 
                 }
             }
+        }
+        /// <summary>
+        /// Henter en json fil fra disken 
+        /// </summary>
+        public void GetMedarbejder()
+        {
+            getMedarbejdersplan.Clear();
+            //List<Medarbejdersplan> nyListe = new List<Medarbejdersplan>();
+            //nyListe = await PersistencyService.HentDataFraDiskAsyncPS();
+
+            getMedarbejderCL = new ObservableCollection<Medarbejdersplan>();
+
+            //Setup client handler
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                //Initialize client
+                client.BaseAddress = new Uri(serverUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                //Request JSON format
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    //Get all the flower orders from the database
+                    var medarbejdersplanResponse = client.GetAsync("api/medarbejdersplans").Result;
+
+                    //Check response -> throw exception if NOT successful
+                    medarbejdersplanResponse.EnsureSuccessStatusCode();
+
+                    //Get the hotels as a ICollection
+                    var orders = medarbejdersplanResponse.Content.ReadAsAsync<ICollection<Medarbejdersplan>>().Result;
+
+                    foreach (var order in orders)
+                    {
+
+                        getMedarbejdersplan.Add(new Medarbejdersplan(medarbejderID, navn, adresse, telefon));
+                    }
+                }   
+                catch
+                {
+
+                }
+            }
+            //StorageFile file = await localfolder.GetFileAsync(filnavn);
+            //string jsonText = await FileIO.ReadTextAsync(file);
+            //this.OC_blomster.Clear();
+            //IndsætJson(jsonText);
         }
     }
 }

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:OverplanUWP.View"
     xmlns:viewmodel="using:OverplanUWP.ViewModel"
+    xmlns:data="using:OverplanUWP.Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -23,7 +24,9 @@
             <TextBox Text="{Binding telefon, Mode=TwoWay}" FontSize="50"/>
             <Button Command="{Binding AddMedarbejder, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
             <Button Command="{Binding AddVirksomhed, Mode=OneWay}" Content="Tilføj en Virksomhed"/>
+            <Button Command="{Binding HentMedarbejder, Mode=OneWay}" Content="Hent Medarbejderplan"/>
+            
         </StackPanel>
-        
+
     </Grid>
 </Page>
