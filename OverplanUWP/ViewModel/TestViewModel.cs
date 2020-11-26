@@ -54,10 +54,6 @@ namespace OverplanUWP.ViewModel
 
         public void PostMedarbejdersplan()
         {
-            EmployeeOverview oMedarbejder = new EmployeeOverview();
-
-            postMedarbejdersplan.Add(oMedarbejder);
-
             //Setup client handler
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
@@ -73,7 +69,7 @@ namespace OverplanUWP.ViewModel
 
                 try
                 {
-                    EmployeeOverview fo = new EmployeeOverview() { Navn = navn, Adresse = adresse, Telefon = telefon };
+                    EmployeeOverview fo = new EmployeeOverview(0,navn, adresse, telefon);
                     //Get all the flower orders from the database
                     var MedarbejdersplanResponse = client.PostAsJsonAsync<EmployeeOverview>("api/Medarbejdersplans", fo).Result;
 

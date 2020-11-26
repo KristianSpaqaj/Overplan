@@ -36,11 +36,11 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.RowSpan="2">
             <Button Content="HELOo"/>
-            <ListView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding getMedarbejdersplan}">
+            <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding getMedarbejdersplan}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Navn}" FontSize="50"/>
+                            <TextBlock Text="{Binding Navn}" FontSize="20"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

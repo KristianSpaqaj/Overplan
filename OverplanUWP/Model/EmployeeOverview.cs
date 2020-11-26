@@ -15,10 +15,6 @@ namespace OverplanUWP.Model
             Adresse = adresse;
             Telefon = telefon;
         }
-        public EmployeeOverview()
-        {
-
-        }
 
         public int MedarbejderID { get; set; }
 
