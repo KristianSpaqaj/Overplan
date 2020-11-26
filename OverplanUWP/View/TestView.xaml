@@ -34,9 +34,9 @@
             <Button Command="{Binding AddVirksomhed, Mode=OneWay}" Content="Tilføj en Virksomhed"/>
             <Button Command="{Binding HentMedarbejder, Mode=OneWay}" Content="Hent Medarbejderplan"/>
         </StackPanel>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" Grid.RowSpan="2">
             <Button Content="HELOo"/>
-            <ListView Grid.Column="1" Grid.Row="0" ItemsSource="{Binding getMedarbejdersplan}">
+            <ListView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding getMedarbejdersplan}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

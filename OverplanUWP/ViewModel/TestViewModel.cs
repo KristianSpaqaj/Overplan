@@ -1,4 +1,5 @@
 ﻿using OverplanUWP.Commands;
+using OverplanUWP.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,28 +11,6 @@ using System.Threading.Tasks;
 
 namespace OverplanUWP.ViewModel
 {
-    public partial class Medarbejdersplan
-    {
-        public Medarbejdersplan(int medarbejderID, string navn, string adresse, int telefon)
-        {
-            MedarbejderID = medarbejderID;
-            Navn = navn;
-            Adresse = adresse;
-            Telefon = telefon;
-        }
-        public Medarbejdersplan()
-        {
-
-        }
-
-        public int MedarbejderID { get; set; }
-
-        public string Navn { get; set; }
-
-        public string Adresse { get; set; }
-
-        public int Telefon { get; set; }
-    }
     public partial class Virksomhed
     {
         public string Navn { get; set; }
@@ -44,10 +23,10 @@ namespace OverplanUWP.ViewModel
 
         const string serverUrl = "https://overplanwebservice20201120130529.azurewebsites.net/";
 
-        public ObservableCollection<Medarbejdersplan> postMedarbejdersplan { get; set; }
+        public ObservableCollection<EmployeeOverview> postMedarbejdersplan { get; set; }
         public ObservableCollection<Virksomhed> postVirksomhed { get; set; }
-        public ObservableCollection<Medarbejdersplan> getMedarbejdersplan { get; set; }
-        public ObservableCollection<Medarbejdersplan> getMedarbejderCL { get; set; }
+        public ObservableCollection<EmployeeOverview> getMedarbejdersplan { get; set; }
+        public ObservableCollection<EmployeeOverview> getMedarbejderCL { get; set; }
 
         public int medarbejderID { get; set; }
         public string navn { get; set; }
@@ -61,9 +40,9 @@ namespace OverplanUWP.ViewModel
 
         public TestViewModel()
         {
-            postMedarbejdersplan = new ObservableCollection<Medarbejdersplan>();
+            postMedarbejdersplan = new ObservableCollection<EmployeeOverview>();
             postVirksomhed = new ObservableCollection<Virksomhed>();
-            getMedarbejdersplan = new ObservableCollection<Medarbejdersplan>();
+            getMedarbejdersplan = new ObservableCollection<EmployeeOverview>();
 
             AddMedarbejder = new RelayCommand(PostMedarbejdersplan);
             AddVirksomhed = new RelayCommand(PostVirksomhed);
@@ -75,7 +54,7 @@ namespace OverplanUWP.ViewModel
 
         public void PostMedarbejdersplan()
         {
-            Medarbejdersplan oMedarbejder = new Medarbejdersplan();
+            EmployeeOverview oMedarbejder = new EmployeeOverview();
 
             postMedarbejdersplan.Add(oMedarbejder);
 
@@ -94,15 +73,15 @@ namespace OverplanUWP.ViewModel
 
                 try
                 {
-                    Medarbejdersplan fo = new Medarbejdersplan() { Navn = navn, Adresse = adresse, Telefon = telefon };
+                    EmployeeOverview fo = new EmployeeOverview() { Navn = navn, Adresse = adresse, Telefon = telefon };
                     //Get all the flower orders from the database
-                    var MedarbejdersplanResponse = client.PostAsJsonAsync<Medarbejdersplan>("api/Medarbejdersplans", fo).Result;
+                    var MedarbejdersplanResponse = client.PostAsJsonAsync<EmployeeOverview>("api/Medarbejdersplans", fo).Result;
 
                     //Check response -> throw exception if NOT successful
                     MedarbejdersplanResponse.EnsureSuccessStatusCode();
 
                     //Get the hotels as a ICollection
-                    var Medarbejdersplan = MedarbejdersplanResponse.Content.ReadAsAsync<Medarbejdersplan>().Result;
+                    var Medarbejdersplan = MedarbejdersplanResponse.Content.ReadAsAsync<EmployeeOverview>().Result;
 
 
                 }
@@ -161,7 +140,7 @@ namespace OverplanUWP.ViewModel
             //List<Medarbejdersplan> nyListe = new List<Medarbejdersplan>();
             //nyListe = await PersistencyService.HentDataFraDiskAsyncPS();
 
-            getMedarbejderCL = new ObservableCollection<Medarbejdersplan>();
+            getMedarbejderCL = new ObservableCollection<EmployeeOverview>();
 
             //Setup client handler
             HttpClientHandler handler = new HttpClientHandler();
@@ -185,14 +164,14 @@ namespace OverplanUWP.ViewModel
                     medarbejdersplanResponse.EnsureSuccessStatusCode();
 
                     //Get the hotels as a ICollection
-                    var orders = medarbejdersplanResponse.Content.ReadAsAsync<ICollection<Medarbejdersplan>>().Result;
+                    var orders = medarbejdersplanResponse.Content.ReadAsAsync<ICollection<EmployeeOverview>>().Result;
 
                     foreach (var order in orders)
                     {
 
                         getMedarbejdersplan.Add(order);
                     }
-                }   
+                }
                 catch
                 {
 
