@@ -14,7 +14,15 @@
         <viewmodel:TestViewModel/>
     </Page.DataContext>
     <Grid>
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" >
             <TextBox Text="{Binding navn, Mode=TwoWay}" FontSize="50"/>
             <TextBox Text="{Binding adresse, Mode=TwoWay}" FontSize="50"/>
             <TextBox Text="{Binding telefon, Mode=TwoWay}" FontSize="50"/>
@@ -25,8 +33,18 @@
             <Button Command="{Binding AddMedarbejder, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
             <Button Command="{Binding AddVirksomhed, Mode=OneWay}" Content="Tilføj en Virksomhed"/>
             <Button Command="{Binding HentMedarbejder, Mode=OneWay}" Content="Hent Medarbejderplan"/>
-            
         </StackPanel>
-
+        <StackPanel Grid.Column="1">
+            <Button Content="HELOo"/>
+            <ListView Grid.Column="1" Grid.Row="0" ItemsSource="{Binding getMedarbejdersplan}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Navn}" FontSize="50"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>

@@ -190,7 +190,7 @@ namespace OverplanUWP.ViewModel
                     foreach (var order in orders)
                     {
 
-                        getMedarbejdersplan.Add(new Medarbejdersplan(medarbejderID, navn, adresse, telefon));
+                        getMedarbejdersplan.Add(order);
                     }
                 }   
                 catch
