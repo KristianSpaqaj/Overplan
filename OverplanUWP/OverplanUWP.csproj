@@ -172,12 +172,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassLibraryOverplan\ClassLibraryOverplan.csproj">
-      <Project>{38a18434-e7b8-4c2c-8755-90284b537e8d}</Project>
-      <Name>ClassLibraryOverplan</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

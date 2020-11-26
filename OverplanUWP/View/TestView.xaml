@@ -17,7 +17,13 @@
             <TextBox Text="{Binding navn, Mode=TwoWay}" FontSize="50"/>
             <TextBox Text="{Binding adresse, Mode=TwoWay}" FontSize="50"/>
             <TextBox Text="{Binding telefon, Mode=TwoWay}" FontSize="50"/>
+
+            <TextBox Text="{Binding navn, Mode=TwoWay}" FontSize="50"/>
+            <TextBox Text="{Binding adresse, Mode=TwoWay}" FontSize="50"/>
+            <TextBox Text="{Binding telefon, Mode=TwoWay}" FontSize="50"/>
+            <Button Command="{Binding AddMedarbejder, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
+            <Button Command="{Binding AddVirksomhed, Mode=OneWay}" Content="Tilføj en Virksomhed"/>
         </StackPanel>
-        <Button Command="{Binding AddMedarbejder, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
+        
     </Grid>
 </Page>

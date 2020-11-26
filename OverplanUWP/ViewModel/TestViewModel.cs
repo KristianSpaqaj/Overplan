@@ -20,12 +20,20 @@ namespace OverplanUWP.ViewModel
 
         public int Telefon { get; set; }
     }
+    public partial class Virksomhed
+    {
+        public string Navn { get; set; }
+        public string Adresse { get; set; }
+        public int Telefon { get; set; }
+
+    }
     public class TestViewModel
     {
 
         const string serverUrl = "https://overplanwebservice20201120130529.azurewebsites.net/";
 
-        public ObservableCollection<Medarbejdersplan> OC_blomster { get; set; }
+        public ObservableCollection<Medarbejdersplan> postMedarbejdersplan { get; set; }
+        public ObservableCollection<Virksomhed> postVirksomhed { get; set; }
 
         public int medarbejderID { get; set; }
         public string navn { get; set; }
@@ -33,21 +41,26 @@ namespace OverplanUWP.ViewModel
         public int telefon { get; set; }
 
         public RelayCommand AddMedarbejder { get; set; }
+        public RelayCommand AddVirksomhed { get; set; }
+
 
         public TestViewModel()
         {
-            OC_blomster = new ObservableCollection<Medarbejdersplan>();
+            postMedarbejdersplan = new ObservableCollection<Medarbejdersplan>();
+            postVirksomhed = new ObservableCollection<Virksomhed>();
 
-            AddMedarbejder = new RelayCommand(AddBlomst);
+            AddMedarbejder = new RelayCommand(PostMedarbejdersplan);
+            AddVirksomhed = new RelayCommand(PostVirksomhed);
+
         }
 
 
 
-        public void AddBlomst()
+        public void PostMedarbejdersplan()
         {
             Medarbejdersplan oMedarbejder = new Medarbejdersplan();
 
-            OC_blomster.Add(oMedarbejder);
+            postMedarbejdersplan.Add(oMedarbejder);
 
             //Setup client handler
             HttpClientHandler handler = new HttpClientHandler();
@@ -73,6 +86,46 @@ namespace OverplanUWP.ViewModel
 
                     //Get the hotels as a ICollection
                     var Medarbejdersplan = MedarbejdersplanResponse.Content.ReadAsAsync<Medarbejdersplan>().Result;
+
+
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        public void PostVirksomhed()
+        {
+            Virksomhed oMedarbejder = new Virksomhed();
+
+            postVirksomhed.Add(oMedarbejder);
+
+            //Setup client handler
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                //Initialize client
+                client.BaseAddress = new Uri(serverUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                //Request JSON format
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    Virksomhed fo = new Virksomhed() { Navn = navn, Adresse = adresse, Telefon = telefon };
+                    //Get all the flower orders from the database
+                    var VirksomhedsResponse = client.PostAsJsonAsync<Virksomhed>("api/Virksomheds", fo).Result;
+
+                    //Check response -> throw exception if NOT successful
+                    VirksomhedsResponse.EnsureSuccessStatusCode();
+
+                    //Get the hotels as a ICollection
+                    var virksomhed = VirksomhedsResponse.Content.ReadAsAsync<Virksomhed>().Result;
 
 
                 }
