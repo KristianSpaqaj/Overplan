@@ -12,44 +12,44 @@ using OverplanWebService;
 
 namespace OverplanWebService.Controllers
 {
-    public class AfdelingsplansController : ApiController
+    public class RostersController : ApiController
     {
         private OverplanContext db = new OverplanContext();
 
-        // GET: api/Afdelingsplans
-        public IQueryable<Afdelingsplan> GetAfdelingsplans()
+        // GET: api/Rosters
+        public IQueryable<Roster> GetRoster()
         {
-            return db.Afdelingsplans;
+            return db.Roster;
         }
 
-        // GET: api/Afdelingsplans/5
-        [ResponseType(typeof(Afdelingsplan))]
-        public IHttpActionResult GetAfdelingsplan(int id)
+        // GET: api/Rosters/5
+        [ResponseType(typeof(Roster))]
+        public IHttpActionResult GetRoster(int id)
         {
-            Afdelingsplan afdelingsplan = db.Afdelingsplans.Find(id);
-            if (afdelingsplan == null)
+            Roster roster = db.Roster.Find(id);
+            if (roster == null)
             {
                 return NotFound();
             }
 
-            return Ok(afdelingsplan);
+            return Ok(roster);
         }
 
-        // PUT: api/Afdelingsplans/5
+        // PUT: api/Rosters/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAfdelingsplan(int id, Afdelingsplan afdelingsplan)
+        public IHttpActionResult PutRoster(int id, Roster roster)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != afdelingsplan.MedarbejderID)
+            if (id != roster.ShiftID)
             {
                 return BadRequest();
             }
 
-            db.Entry(afdelingsplan).State = EntityState.Modified;
+            db.Entry(roster).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace OverplanWebService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AfdelingsplanExists(id))
+                if (!RosterExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace OverplanWebService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Afdelingsplans
-        [ResponseType(typeof(Afdelingsplan))]
-        public IHttpActionResult PostAfdelingsplan(Afdelingsplan afdelingsplan)
+        // POST: api/Rosters
+        [ResponseType(typeof(Roster))]
+        public IHttpActionResult PostRoster(Roster roster)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Afdelingsplans.Add(afdelingsplan);
+            db.Roster.Add(roster);
 
             try
             {
@@ -87,7 +87,7 @@ namespace OverplanWebService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (AfdelingsplanExists(afdelingsplan.MedarbejderID))
+                if (RosterExists(roster.ShiftID))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace OverplanWebService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = afdelingsplan.MedarbejderID }, afdelingsplan);
+            return CreatedAtRoute("DefaultApi", new { id = roster.ShiftID }, roster);
         }
 
-        // DELETE: api/Afdelingsplans/5
-        [ResponseType(typeof(Afdelingsplan))]
-        public IHttpActionResult DeleteAfdelingsplan(int id)
+        // DELETE: api/Rosters/5
+        [ResponseType(typeof(Roster))]
+        public IHttpActionResult DeleteRoster(int id)
         {
-            Afdelingsplan afdelingsplan = db.Afdelingsplans.Find(id);
-            if (afdelingsplan == null)
+            Roster roster = db.Roster.Find(id);
+            if (roster == null)
             {
                 return NotFound();
             }
 
-            db.Afdelingsplans.Remove(afdelingsplan);
+            db.Roster.Remove(roster);
             db.SaveChanges();
 
-            return Ok(afdelingsplan);
+            return Ok(roster);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace OverplanWebService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool AfdelingsplanExists(int id)
+        private bool RosterExists(int id)
         {
-            return db.Afdelingsplans.Count(e => e.MedarbejderID == id) > 0;
+            return db.Roster.Count(e => e.ShiftID == id) > 0;
         }
     }
 }

@@ -12,44 +12,44 @@ using OverplanWebService;
 
 namespace OverplanWebService.Controllers
 {
-    public class VirksomhedsController : ApiController
+    public class ShiftOverviewsController : ApiController
     {
         private OverplanContext db = new OverplanContext();
 
-        // GET: api/Virksomheds
-        public IQueryable<Virksomhed> GetVirksomheds()
+        // GET: api/ShiftOverviews
+        public IQueryable<ShiftOverview> GetShiftOverview()
         {
-            return db.Virksomheds;
+            return db.ShiftOverview;
         }
 
-        // GET: api/Virksomheds/5
-        [ResponseType(typeof(Virksomhed))]
-        public IHttpActionResult GetVirksomhed(int id)
+        // GET: api/ShiftOverviews/5
+        [ResponseType(typeof(ShiftOverview))]
+        public IHttpActionResult GetShiftOverview(int id)
         {
-            Virksomhed virksomhed = db.Virksomheds.Find(id);
-            if (virksomhed == null)
+            ShiftOverview shiftOverview = db.ShiftOverview.Find(id);
+            if (shiftOverview == null)
             {
                 return NotFound();
             }
 
-            return Ok(virksomhed);
+            return Ok(shiftOverview);
         }
 
-        // PUT: api/Virksomheds/5
+        // PUT: api/ShiftOverviews/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutVirksomhed(int id, Virksomhed virksomhed)
+        public IHttpActionResult PutShiftOverview(int id, ShiftOverview shiftOverview)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != virksomhed.VirksomhedsID)
+            if (id != shiftOverview.ShiftID)
             {
                 return BadRequest();
             }
 
-            db.Entry(virksomhed).State = EntityState.Modified;
+            db.Entry(shiftOverview).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace OverplanWebService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VirksomhedExists(id))
+                if (!ShiftOverviewExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace OverplanWebService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Virksomheds
-        [ResponseType(typeof(Virksomhed))]
-        public IHttpActionResult PostVirksomhed(Virksomhed virksomhed)
+        // POST: api/ShiftOverviews
+        [ResponseType(typeof(ShiftOverview))]
+        public IHttpActionResult PostShiftOverview(ShiftOverview shiftOverview)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Virksomheds.Add(virksomhed);
+            db.ShiftOverview.Add(shiftOverview);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = virksomhed.VirksomhedsID }, virksomhed);
+            return CreatedAtRoute("DefaultApi", new { id = shiftOverview.ShiftID }, shiftOverview);
         }
 
-        // DELETE: api/Virksomheds/5
-        [ResponseType(typeof(Virksomhed))]
-        public IHttpActionResult DeleteVirksomhed(int id)
+        // DELETE: api/ShiftOverviews/5
+        [ResponseType(typeof(ShiftOverview))]
+        public IHttpActionResult DeleteShiftOverview(int id)
         {
-            Virksomhed virksomhed = db.Virksomheds.Find(id);
-            if (virksomhed == null)
+            ShiftOverview shiftOverview = db.ShiftOverview.Find(id);
+            if (shiftOverview == null)
             {
                 return NotFound();
             }
 
-            db.Virksomheds.Remove(virksomhed);
+            db.ShiftOverview.Remove(shiftOverview);
             db.SaveChanges();
 
-            return Ok(virksomhed);
+            return Ok(shiftOverview);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace OverplanWebService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool VirksomhedExists(int id)
+        private bool ShiftOverviewExists(int id)
         {
-            return db.Virksomheds.Count(e => e.VirksomhedsID == id) > 0;
+            return db.ShiftOverview.Count(e => e.ShiftID == id) > 0;
         }
     }
 }
