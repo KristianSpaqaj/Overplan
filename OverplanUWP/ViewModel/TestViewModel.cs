@@ -23,7 +23,7 @@ namespace OverplanUWP.ViewModel
         public int medarbejderID { get; set; }
         public string navn { get; set; }
         public string adresse { get; set; }
-        public int telefon { get; set; }
+        public string telefon { get; set; }
 
         public RelayCommand AddMedarbejder { get; set; }
         public RelayCommand AddVirksomhed { get; set; }

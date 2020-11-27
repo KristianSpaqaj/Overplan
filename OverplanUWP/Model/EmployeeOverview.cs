@@ -8,20 +8,20 @@ namespace OverplanUWP.Model
 {
     public class EmployeeOverview
     {
-        public EmployeeOverview(int medarbejderID, string navn, string adresse, int telefon)
+        public EmployeeOverview(int employeeID, string name, string adress, string number)
         {
-            MedarbejderID = medarbejderID;
-            Navn = navn;
-            Adresse = adresse;
-            Telefon = telefon;
+            EmployeeID = employeeID;
+            Name = name;
+            Adress = adress;
+            Number = number;
         }
 
-        public int MedarbejderID { get; set; }
+        public int EmployeeID { get; set; }
 
-        public string Navn { get; set; }
+        public string Name { get; set; }
 
-        public string Adresse { get; set; }
+        public string Adress { get; set; }
 
-        public int Telefon { get; set; }
+        public string Number { get; set; }
     }
 }

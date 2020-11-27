@@ -103,7 +103,7 @@ namespace OverplanUWP.Common
                 try
                 {
                     //Get all the flower orders from the database
-                    var medarbejdersplanResponse = client.GetAsync("api/medarbejdersplans").Result;
+                    var medarbejdersplanResponse = client.GetAsync("api/EmployeeOverviews").Result;
 
                     //Check response -> throw exception if NOT successful
                     medarbejdersplanResponse.EnsureSuccessStatusCode();
