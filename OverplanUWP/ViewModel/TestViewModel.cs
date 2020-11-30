@@ -52,7 +52,7 @@ namespace OverplanUWP.ViewModel
         private async void GetEmployeeOverview()
         {
             getMedarbejdersplan.Clear();
-            var employees = Database.GetEmployeeOverview();
+            var employees = Database.Get<EmployeeOverview>();
             foreach(var e in await employees)
             {
                 getMedarbejdersplan.Add(e);
@@ -68,7 +68,7 @@ namespace OverplanUWP.ViewModel
         private async void GetShiftOverview()
         {
             getShiftoverview.Clear();
-            var shifts = Database.GetShiftOverview();
+            var shifts = Database.Get<ShiftOverview>();
             foreach (var e in await shifts)
             {
                 getShiftoverview.Add(e);

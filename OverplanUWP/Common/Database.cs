@@ -85,12 +85,10 @@ namespace OverplanUWP.Common
             }
         }
 
-        /// <summary>
-        /// Henter en json fil fra disken 
-        /// </summary>
-        public static async Task<List<ShiftOverview>>  GetShiftOverview()
+
+        public static async Task<List<T>> Get<T>()
         {
-            List<ShiftOverview> shifts = new List<ShiftOverview>();
+            List<T> results = new List<T>();
             //Setup client handler
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
@@ -107,61 +105,19 @@ namespace OverplanUWP.Common
                 try
                 {
                     //Get all the values from the database
-                    var shiftOverviewResponse = await client.GetAsync("api/ShiftOverviews");
+                    string tableName = typeof(T).Name;
+                    var response = await client.GetAsync("api/" + tableName + "s");
 
                     //Check response -> throw exception if NOT successful
-                    shiftOverviewResponse.EnsureSuccessStatusCode();
-
-                    //Get the shifts as a ICollection
-                    var orders = shiftOverviewResponse.Content.ReadAsAsync<ICollection<ShiftOverview>>().Result;
-
-                    foreach (var order in orders)
-                    {
-
-                        shifts.Add(order);
-                    }
-                }
-
-                catch
-                {
-
-                }
-
-                return shifts;
-            }
-        }
-
-        public static async Task<List<EmployeeOverview>> GetEmployeeOverview()
-        {
-            List<EmployeeOverview> employees = new List<EmployeeOverview>();
-            //Setup client handler
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.UseDefaultCredentials = true;
-
-            using (var client = new HttpClient(handler))
-            {
-                //Initialize client
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-
-                //Request JSON format
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                try
-                {
-                    //Get all the values from the database
-                    var EmployeeResponse = await client.GetAsync("api/EmployeeOverviews");
-
-                    //Check response -> throw exception if NOT successful
-                    EmployeeResponse.EnsureSuccessStatusCode();
+                    response.EnsureSuccessStatusCode();
 
                     //Get the Employees as a ICollection
-                    var orders = await EmployeeResponse.Content.ReadAsAsync<ICollection<EmployeeOverview>>();
+                    var parsed = await response.Content.ReadAsAsync<ICollection<T>>();
 
-                    foreach (var order in orders)
+                    foreach (var row in parsed)
                     {
 
-                        employees.Add(order);
+                        results.Add(row);
                     }
                 }
 
@@ -170,7 +126,7 @@ namespace OverplanUWP.Common
 
                 }
 
-                return employees;
+                return results;
             }
 
         }
