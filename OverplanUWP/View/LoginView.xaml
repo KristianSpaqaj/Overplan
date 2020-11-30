@@ -6,9 +6,32 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    RequestedTheme="Light"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <StackPanel Orientation="Horizontal" Margin="10,250,0,0"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="1000">
+            <Button x:Name="Log ind som medarbejder" Content="Log ind som medarbejder" Margin="80,0,10,0" Height="60" Width="379" FontSize="30"/>
+            <Button x:Name="Log ind som leder" Content="Log ind som leder" Margin="80,0,10,0" Height="60" Width="379" FontSize="30"/>
+            
+        </StackPanel>
+        
+        <TextBlock Text="Overplan" FontSize="130" HorizontalAlignment="Center" Margin="10,240,0,570"/>
+
+        <StackPanel Orientation="Vertical" Margin="10,10,80,0"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="500">
+            
+            <TextBox Text="" FontSize="30" Margin="180,0,10,10" Height="50" Width="300" Background="Beige"/>
+            <TextBox Text="" FontSize="30" Margin="180,10,10,0" Height="50" Width="300" Background="Beige"/>
+
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="10,80,80,0"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="500">
+            <TextBlock Text="Username" FontSize="30" Margin="40,0,325,0" Height="50" Width="140"/>
+            <TextBlock Text="Password" FontSize="30" Margin="40,20,310,65" Height="50" Width="130"/>
+        </StackPanel>
+
 
     </Grid>
 </Page>
