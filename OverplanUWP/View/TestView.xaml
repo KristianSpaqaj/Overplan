@@ -28,14 +28,20 @@
 
             <Button Command="{Binding AddMedarbejder, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
             <Button Command="{Binding HentMedarbejder, Mode=OneWay}" Content="Hent Medarbejderplan"/>
-            
-            <Button Command="{Binding postShift, Mode=OneWay}" Content="tilføj en vagt"/>
-            <Button Command="{Binding getShift, Mode=OneWay}" Content="hent vagt"/>
+            <StackPanel Grid.Row="1">
+                <Button Command="{Binding postShift, Mode=OneWay}" Content="tilføj en vagt"/>
+                <Button Command="{Binding getShift, Mode=OneWay}" Content="hent vagt"/>
+                <ListView ItemsSource="{Binding getMedarbejdersplan}" SelectedItem="{Binding selectedEmployee, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+            </ListView>
+            </StackPanel>
+            <CalendarDatePicker Date="{Binding dateFrom, Mode=TwoWay}"/>
+            <CalendarDatePicker Date="{Binding dateTo, Mode=TwoWay}"/>
 
-            <TextBox Text="{Binding employeeID, Mode=TwoWay}"/>
-            <CalendarDatePicker     Date="{Binding employeeID, Mode=TwoWay}"/>
-            <CalendarDatePicker Date="{Binding employeeID, Mode=TwoWay}"/>
-            
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <ListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding getShiftoverview}">
@@ -43,6 +49,7 @@
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Text="{Binding ShiftID}"/>
+                            <TextBlock Text="{Binding EmployeeID}"/>
                             <TextBlock Text="{Binding DateFrom}"/>
                             <TextBlock Text="{Binding DateTo}"/>
                         </StackPanel>

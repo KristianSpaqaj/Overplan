@@ -17,14 +17,15 @@ namespace OverplanUWP.ViewModel
     {
         public ObservableCollection<ShiftOverview> getShiftoverview { get; set; }
         public ObservableCollection<EmployeeOverview> getMedarbejdersplan { get; set; }
+        public EmployeeOverview selectedEmployee { get; set; }
 
         public int shiftID { get; set; }
         public int employeeID { get; set; }
         public string name { get; set; }
         public string adress { get; set; }
         public string number { get; set; }
-        public DateTime dateFrom { get; set; } = new DateTime(2020, 5, 3,10,10,10,1);
-        public DateTime dateTo { get; set; } = new DateTime(2020, 6, 3,10,10,10,2);
+        public DateTime dateFrom { get; set; } 
+        public DateTime dateTo { get; set; } 
 
         public RelayCommand AddMedarbejder { get; set; }
         public RelayCommand HentMedarbejder { get; set; }
@@ -37,6 +38,10 @@ namespace OverplanUWP.ViewModel
 
             getShiftoverview = new ObservableCollection<ShiftOverview>();
             getMedarbejdersplan = new ObservableCollection<EmployeeOverview>();
+
+
+            dateFrom = DateTime.Now;
+            dateTo = dateFrom.AddDays(1);
 
             AddMedarbejder = new RelayCommand(PostEmployeeOverview);
             HentMedarbejder = new RelayCommand(GetEmployeeOverview);
@@ -61,7 +66,7 @@ namespace OverplanUWP.ViewModel
 
         private async void PostShiftOverview()
         {
-            ShiftOverview shift = new ShiftOverview(1, employeeID, dateFrom, dateTo);
+            ShiftOverview shift = new ShiftOverview(shiftID, selectedEmployee.EmployeeID, dateFrom, dateTo);
             await Database.Post<ShiftOverview>(shift);
         }
 
