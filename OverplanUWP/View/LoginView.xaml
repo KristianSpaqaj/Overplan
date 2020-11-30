@@ -10,27 +10,34 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel Orientation="Horizontal" Margin="10,250,0,0"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="1000">
-            <Button x:Name="Log ind som medarbejder" Content="Log ind som medarbejder" Margin="80,0,10,0" Height="60" Width="379" FontSize="30"/>
-            <Button x:Name="Log ind som leder" Content="Log ind som leder" Margin="80,0,10,0" Height="60" Width="379" FontSize="30"/>
+        <Grid.RowDefinitions>
+            <RowDefinition />
             
-        </StackPanel>
-        
-        <TextBlock Text="Overplan" FontSize="130" HorizontalAlignment="Center" Margin="10,240,0,570"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="255,240,0,0"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Width="1000" Grid.Row="1" Height="60">
+            <Button x:Name="LoginAsEmployee" Content="Login as Employee" Margin="90,0,10,0" Height="60" Width="379" FontSize="30" Click="click_employeeRosterView"/>
+            <Button x:Name="LoginAsLeader" Content="Login as Leader" Margin="50,0,10,0" Height="60" Width="379" FontSize="30" Click="click_leaderRosterView"/>
 
-        <StackPanel Orientation="Vertical" Margin="10,10,80,0"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="500">
-            
+        </StackPanel>
+
+        <TextBlock Text="Overplan" FontSize="130" HorizontalAlignment="Left" Margin="494,240,0,580" Width="521"/>
+
+        <StackPanel Orientation="Vertical" Margin="465,445,0,0"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Height="120">
+
             <TextBox Text="" FontSize="30" Margin="180,0,10,10" Height="50" Width="300" Background="Beige"/>
             <TextBox Text="" FontSize="30" Margin="180,10,10,0" Height="50" Width="300" Background="Beige"/>
 
         </StackPanel>
-        <StackPanel Orientation="Vertical" Margin="10,80,80,0"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="500">
+        <StackPanel Orientation="Vertical" Margin="465,448,0,0"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Grid.RowSpan="2" Height="185">
             <TextBlock Text="Username" FontSize="30" Margin="40,0,325,0" Height="50" Width="140"/>
             <TextBlock Text="Password" FontSize="30" Margin="40,20,310,65" Height="50" Width="130"/>
         </StackPanel>
+        <Frame Grid.Row="1"
+               x:Name="LoginFrame" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1490" Height="1000">
+        </Frame>
 
 
     </Grid>
