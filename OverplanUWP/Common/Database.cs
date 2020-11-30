@@ -32,7 +32,7 @@ namespace OverplanUWP.Common
                 try
                 {
                     //Get all the flower orders from the database
-                    var MedarbejdersplanResponse = client.PostAsJsonAsync<EmployeeOverview>("api/Medarbejdersplans", employee).Result;
+                    var MedarbejdersplanResponse = client.PostAsJsonAsync<EmployeeOverview>("api/EmployeeOverviews", employee).Result;
 
                     //Check response -> throw exception if NOT successful
                     MedarbejdersplanResponse.EnsureSuccessStatusCode();

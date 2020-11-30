@@ -20,10 +20,10 @@ namespace OverplanUWP.ViewModel
         public ObservableCollection<Business> postVirksomhed { get; set; }
         public ObservableCollection<EmployeeOverview> getMedarbejdersplan { get; set; }
 
-        public int medarbejderID { get; set; }
-        public string navn { get; set; }
-        public string adresse { get; set; }
-        public string telefon { get; set; }
+        public int employeeID { get; set; }
+        public string name { get; set; }
+        public string adress { get; set; }
+        public string number { get; set; }
 
         public RelayCommand AddMedarbejder { get; set; }
         public RelayCommand AddVirksomhed { get; set; }
@@ -43,7 +43,7 @@ namespace OverplanUWP.ViewModel
         }
         private void PostEmployeeOverview()
         {
-            EmployeeOverview employee = new EmployeeOverview(medarbejderID, navn, adresse, telefon);
+            EmployeeOverview employee = new EmployeeOverview(employeeID, name, adress, number);
             Database.PostEmployeeOverview(employee);
         }
 
