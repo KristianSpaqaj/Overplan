@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:OverplanUWP.View"
     xmlns:viewmodel="using:OverplanUWP.ViewModel"
-    xmlns:data="using:OverplanUWP.Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -29,14 +28,33 @@
 
             <Button Command="{Binding AddMedarbejder, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
             <Button Command="{Binding HentMedarbejder, Mode=OneWay}" Content="Hent Medarbejderplan"/>
+            
+            <Button Command="{Binding postShift, Mode=OneWay}" Content="tilføj en vagt"/>
+            <Button Command="{Binding getShift, Mode=OneWay}" Content="hent vagt"/>
+            
+            <TextBox Text="{Binding employeeID, Mode=TwoWay}"/>
+            <TextBox Text="{Binding datefrom, Mode=TwoWay}"/>
+            <TextBox Text="{Binding dateto, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.RowSpan="2">
-            <Button Content="HELOo"/>
             <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding getMedarbejdersplan}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Name  }" FontSize="20"/>
+                            <TextBlock Text="{Binding Name}" FontSize="20"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <ListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding getShiftoverview}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding EmployeeID}"/>
+                            <TextBlock Text="{Binding DateFrom}"/>
+                            <TextBlock Text="{Binding DateTo}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

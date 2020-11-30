@@ -47,7 +47,7 @@ namespace OverplanUWP.Common
             }
         }
 
-        public static void PostBusiness(Business business)
+        public static void PostShiftOverview(ShiftOverview shiftOverview)
         {
             //Setup client handler
             HttpClientHandler handler = new HttpClientHandler();
@@ -65,13 +65,13 @@ namespace OverplanUWP.Common
                 try
                 {
                     //Get all the flower orders from the database
-                    var VirksomhedsResponse = client.PostAsJsonAsync<Business>("api/Virksomheds", business).Result;
+                    var VirksomhedsResponse = client.PostAsJsonAsync<ShiftOverview>("api/ShiftOverviews", shiftOverview).Result;
 
                     //Check response -> throw exception if NOT successful
                     VirksomhedsResponse.EnsureSuccessStatusCode();
 
                     //Get the hotels as a ICollection
-                    var virksomhed = VirksomhedsResponse.Content.ReadAsAsync<Business>().Result;
+                    var virksomhed = VirksomhedsResponse.Content.ReadAsAsync<ShiftOverview>().Result;
 
 
                 }
@@ -84,6 +84,49 @@ namespace OverplanUWP.Common
         /// <summary>
         /// Henter en json fil fra disken 
         /// </summary>
+        public static List<ShiftOverview> GetShiftOverview()
+        {
+            List<ShiftOverview> shifts = new List<ShiftOverview>();
+            //Setup client handler
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                //Initialize client
+                client.BaseAddress = new Uri(serverUrl);
+                client.DefaultRequestHeaders.Clear();
+
+                //Request JSON format
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    //Get all the values from the database
+                    var shiftOverviewResponse = client.GetAsync("api/ShiftOverviews").Result;
+
+                    //Check response -> throw exception if NOT successful
+                    shiftOverviewResponse.EnsureSuccessStatusCode();
+
+                    //Get the shifts as a ICollection
+                    var orders = shiftOverviewResponse.Content.ReadAsAsync<ICollection<ShiftOverview>>().Result;
+
+                    foreach (var order in orders)
+                    {
+
+                        shifts.Add(order);
+                    }
+                }
+
+                catch
+                {
+
+                }
+
+                return shifts;
+            }
+        }
+            
         public static List<EmployeeOverview> GetEmployeeOverview()
         {
             List<EmployeeOverview> employees = new List<EmployeeOverview>();
@@ -125,10 +168,7 @@ namespace OverplanUWP.Common
 
                 return employees;
             }
-            //StorageFile file = await localfolder.GetFileAsync(filnavn);
-            //string jsonText = await FileIO.ReadTextAsync(file);
-            //this.OC_blomster.Clear();
-            //IndsætJson(jsonText);
+            
         }
     }
 

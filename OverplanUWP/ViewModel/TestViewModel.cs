@@ -15,31 +15,33 @@ namespace OverplanUWP.ViewModel
     
     public class TestViewModel
     {
-
-        public ObservableCollection<EmployeeOverview> postMedarbejdersplan { get; set; }
-        public ObservableCollection<Business> postVirksomhed { get; set; }
+        public ObservableCollection<ShiftOverview> getShiftoverview { get; set; }
         public ObservableCollection<EmployeeOverview> getMedarbejdersplan { get; set; }
 
+        public int shiftID { get; set; }
         public int employeeID { get; set; }
         public string name { get; set; }
         public string adress { get; set; }
         public string number { get; set; }
+        public DateTime datefrom { get; set; }
+        public DateTime dateto { get; set; }
 
         public RelayCommand AddMedarbejder { get; set; }
-        public RelayCommand AddVirksomhed { get; set; }
         public RelayCommand HentMedarbejder { get; set; }
 
+        public RelayCommand postShift { get; set; }
+        public RelayCommand getShift { get; set; }
 
         public TestViewModel()
         {
-            postMedarbejdersplan = new ObservableCollection<EmployeeOverview>();
-            postVirksomhed = new ObservableCollection<Business>();
+
+            getShiftoverview = new ObservableCollection<ShiftOverview>();
             getMedarbejdersplan = new ObservableCollection<EmployeeOverview>();
 
             AddMedarbejder = new RelayCommand(PostEmployeeOverview);
-            //AddVirksomhed = new RelayCommand(PostVirksomhed);
             HentMedarbejder = new RelayCommand(GetEmployeeOverview);
-
+            postShift = new RelayCommand(PostShiftOverview);
+            getShift = new RelayCommand(GetShiftOverview);
         }
         private void PostEmployeeOverview()
         {
@@ -55,5 +57,21 @@ namespace OverplanUWP.ViewModel
                 getMedarbejdersplan.Add(e);
             }
         }
+
+        private void PostShiftOverview()
+        {
+            ShiftOverview shift = new ShiftOverview(shiftID, employeeID, datefrom, dateto);
+            Database.PostShiftOverview(shift);
+        }
+
+        private void GetShiftOverview()
+        {
+            var shifts = Database.GetShiftOverview();
+            foreach (var e in shifts)
+            {
+                getShiftoverview.Add(e);
+            }
+        }
+
     }
 }

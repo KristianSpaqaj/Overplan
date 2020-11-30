@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace OverplanUWP.Model
 {
-    public class Business
+    class Rosters
     {
-        public string Navn { get; set; }
-        public string Adresse { get; set; }
-        public int Telefon { get; set; }
     }
 }
