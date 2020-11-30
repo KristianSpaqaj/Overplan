@@ -25,7 +25,7 @@ namespace OverplanUWP.Common
             settings.Converters.Add(dateConverter);
         }
 
-        public static async Task PostEmployeeOverview(EmployeeOverview employee)
+        public static async Task Post<T>(T obj)
         {
             //Setup client handler
             HttpClientHandler handler = new HttpClientHandler();
@@ -39,40 +39,7 @@ namespace OverplanUWP.Common
 
                 //Request JSON format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                try
-                {
-                    //Get all the values from the database
-                    var EmployeeResponse = await client.PostAsJsonAsync<EmployeeOverview>("api/EmployeeOverviews", employee);
-
-                    //Check response -> throw exception if NOT successful
-                    EmployeeResponse.EnsureSuccessStatusCode();
-
-                    //Get the employees as a ICollection
-                    var Medarbejdersplan = await EmployeeResponse.Content.ReadAsAsync<EmployeeOverview>();
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
-        public static async Task PostShiftOverview(ShiftOverview employee)
-        {
-            //Setup client handler
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.UseDefaultCredentials = true;
-
-            using (var client = new HttpClient(handler))
-            {
-                //Initialize client
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-
-                //Request JSON format
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var js = JsonConvert.SerializeObject(employee, dateConverter);
+                var js = JsonConvert.SerializeObject(obj, dateConverter);
                 var content = new StringContent(js, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/ShiftOverviews", content);
 
@@ -81,7 +48,7 @@ namespace OverplanUWP.Common
                 response.EnsureSuccessStatusCode();
 
                 //Get the employees as a ICollection
-                var Medarbejdersplan = await response.Content.ReadAsAsync<ShiftOverview>();
+                await response.Content.ReadAsAsync<T>();
             }
         }
 

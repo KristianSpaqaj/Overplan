@@ -46,7 +46,7 @@ namespace OverplanUWP.ViewModel
         private async void PostEmployeeOverview()
         {
             EmployeeOverview employee = new EmployeeOverview(employeeID, name, adress, number);
-            await Database.PostEmployeeOverview(employee);
+            await Database.Post<EmployeeOverview>(employee);
         }
 
         private async void GetEmployeeOverview()
@@ -62,7 +62,7 @@ namespace OverplanUWP.ViewModel
         private async void PostShiftOverview()
         {
             ShiftOverview shift = new ShiftOverview(1, employeeID, dateFrom, dateTo);
-            await Database.PostShiftOverview(shift);
+            await Database.Post<ShiftOverview>(shift);
         }
 
         private async void GetShiftOverview()
