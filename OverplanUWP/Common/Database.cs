@@ -1,4 +1,6 @@
-﻿using OverplanUWP.Model;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using OverplanUWP.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +14,18 @@ namespace OverplanUWP.Common
     public static class Database
     {
         static string serverUrl = "https://overplanwebservice20201120130529.azurewebsites.net/";
+        private static JsonSerializerSettings settings = new JsonSerializerSettings();
+        private static IsoDateTimeConverter dateConverter = new IsoDateTimeConverter
+        {
+            DateTimeFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss.fff"
+        };
 
+        static Database()
+        {
+            settings.Converters.Add(dateConverter);
+        }
 
-        public static void PostEmployeeOverview(EmployeeOverview employee)
+        public static async Task PostEmployeeOverview(EmployeeOverview employee)
         {
             //Setup client handler
             HttpClientHandler handler = new HttpClientHandler();
@@ -31,14 +42,14 @@ namespace OverplanUWP.Common
 
                 try
                 {
-                    //Get all the flower orders from the database
-                    var MedarbejdersplanResponse = client.PostAsJsonAsync<EmployeeOverview>("api/EmployeeOverviews", employee).Result;
+                    //Get all the values from the database
+                    var EmployeeResponse = await client.PostAsJsonAsync<EmployeeOverview>("api/EmployeeOverviews", employee);
 
                     //Check response -> throw exception if NOT successful
-                    MedarbejdersplanResponse.EnsureSuccessStatusCode();
+                    EmployeeResponse.EnsureSuccessStatusCode();
 
-                    //Get the hotels as a ICollection
-                    var Medarbejdersplan = MedarbejdersplanResponse.Content.ReadAsAsync<EmployeeOverview>().Result;
+                    //Get the employees as a ICollection
+                    var Medarbejdersplan = await EmployeeResponse.Content.ReadAsAsync<EmployeeOverview>();
                 }
                 catch
                 {
@@ -47,7 +58,7 @@ namespace OverplanUWP.Common
             }
         }
 
-        public static void PostShiftOverview(ShiftOverview shiftOverview)
+        public static async Task PostShiftOverview(ShiftOverview employee)
         {
             //Setup client handler
             HttpClientHandler handler = new HttpClientHandler();
@@ -61,30 +72,23 @@ namespace OverplanUWP.Common
 
                 //Request JSON format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var js = JsonConvert.SerializeObject(employee, dateConverter);
+                var content = new StringContent(js, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("api/ShiftOverviews", content);
 
-                try
-                {
-                    //Get all the flower orders from the database
-                    var VirksomhedsResponse = client.PostAsJsonAsync<ShiftOverview>("api/ShiftOverviews", shiftOverview).Result;
+                //Get all the values from the database
+                //Check response -> throw exception if NOT successful
+                response.EnsureSuccessStatusCode();
 
-                    //Check response -> throw exception if NOT successful
-                    VirksomhedsResponse.EnsureSuccessStatusCode();
-
-                    //Get the hotels as a ICollection
-                    var virksomhed = VirksomhedsResponse.Content.ReadAsAsync<ShiftOverview>().Result;
-
-
-                }
-                catch
-                {
-
-                }
+                //Get the employees as a ICollection
+                var Medarbejdersplan = await response.Content.ReadAsAsync<ShiftOverview>();
             }
         }
+
         /// <summary>
         /// Henter en json fil fra disken 
         /// </summary>
-        public static List<ShiftOverview> GetShiftOverview()
+        public static async Task<List<ShiftOverview>>  GetShiftOverview()
         {
             List<ShiftOverview> shifts = new List<ShiftOverview>();
             //Setup client handler
@@ -103,7 +107,7 @@ namespace OverplanUWP.Common
                 try
                 {
                     //Get all the values from the database
-                    var shiftOverviewResponse = client.GetAsync("api/ShiftOverviews").Result;
+                    var shiftOverviewResponse = await client.GetAsync("api/ShiftOverviews");
 
                     //Check response -> throw exception if NOT successful
                     shiftOverviewResponse.EnsureSuccessStatusCode();
@@ -126,8 +130,8 @@ namespace OverplanUWP.Common
                 return shifts;
             }
         }
-            
-        public static List<EmployeeOverview> GetEmployeeOverview()
+
+        public static async Task<List<EmployeeOverview>> GetEmployeeOverview()
         {
             List<EmployeeOverview> employees = new List<EmployeeOverview>();
             //Setup client handler
@@ -145,14 +149,14 @@ namespace OverplanUWP.Common
 
                 try
                 {
-                    //Get all the flower orders from the database
-                    var medarbejdersplanResponse = client.GetAsync("api/EmployeeOverviews").Result;
+                    //Get all the values from the database
+                    var EmployeeResponse = await client.GetAsync("api/EmployeeOverviews");
 
                     //Check response -> throw exception if NOT successful
-                    medarbejdersplanResponse.EnsureSuccessStatusCode();
+                    EmployeeResponse.EnsureSuccessStatusCode();
 
-                    //Get the hotels as a ICollection
-                    var orders = medarbejdersplanResponse.Content.ReadAsAsync<ICollection<EmployeeOverview>>().Result;
+                    //Get the Employees as a ICollection
+                    var orders = await EmployeeResponse.Content.ReadAsAsync<ICollection<EmployeeOverview>>();
 
                     foreach (var order in orders)
                     {
@@ -168,7 +172,7 @@ namespace OverplanUWP.Common
 
                 return employees;
             }
-            
+
         }
     }
 

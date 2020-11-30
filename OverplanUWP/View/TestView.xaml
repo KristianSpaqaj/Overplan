@@ -31,28 +31,18 @@
             
             <Button Command="{Binding postShift, Mode=OneWay}" Content="tilføj en vagt"/>
             <Button Command="{Binding getShift, Mode=OneWay}" Content="hent vagt"/>
-            
+
             <TextBox Text="{Binding employeeID, Mode=TwoWay}"/>
-            <TextBox Text="{Binding datefrom, Mode=TwoWay}"/>
-            <TextBox Text="{Binding dateto, Mode=TwoWay}"/>
+            <CalendarDatePicker     Date="{Binding employeeID, Mode=TwoWay}"/>
+            <CalendarDatePicker Date="{Binding employeeID, Mode=TwoWay}"/>
+            
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.RowSpan="2">
-            <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding getMedarbejdersplan}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" FontSize="20"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <ListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding getShiftoverview}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding EmployeeID}"/>
+                            <TextBlock Text="{Binding ShiftID}"/>
                             <TextBlock Text="{Binding DateFrom}"/>
                             <TextBlock Text="{Binding DateTo}"/>
                         </StackPanel>

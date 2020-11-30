@@ -23,8 +23,8 @@ namespace OverplanUWP.ViewModel
         public string name { get; set; }
         public string adress { get; set; }
         public string number { get; set; }
-        public DateTime datefrom { get; set; }
-        public DateTime dateto { get; set; }
+        public DateTime dateFrom { get; set; } = new DateTime(2020, 5, 3,10,10,10,1);
+        public DateTime dateTo { get; set; } = new DateTime(2020, 6, 3,10,10,10,2);
 
         public RelayCommand AddMedarbejder { get; set; }
         public RelayCommand HentMedarbejder { get; set; }
@@ -43,31 +43,33 @@ namespace OverplanUWP.ViewModel
             postShift = new RelayCommand(PostShiftOverview);
             getShift = new RelayCommand(GetShiftOverview);
         }
-        private void PostEmployeeOverview()
+        private async void PostEmployeeOverview()
         {
             EmployeeOverview employee = new EmployeeOverview(employeeID, name, adress, number);
-            Database.PostEmployeeOverview(employee);
+            await Database.PostEmployeeOverview(employee);
         }
 
-        private void GetEmployeeOverview()
+        private async void GetEmployeeOverview()
         {
+            getMedarbejdersplan.Clear();
             var employees = Database.GetEmployeeOverview();
-            foreach(var e in employees)
+            foreach(var e in await employees)
             {
                 getMedarbejdersplan.Add(e);
             }
         }
 
-        private void PostShiftOverview()
+        private async void PostShiftOverview()
         {
-            ShiftOverview shift = new ShiftOverview(shiftID, employeeID, datefrom, dateto);
-            Database.PostShiftOverview(shift);
+            ShiftOverview shift = new ShiftOverview(1, employeeID, dateFrom, dateTo);
+            await Database.PostShiftOverview(shift);
         }
 
-        private void GetShiftOverview()
+        private async void GetShiftOverview()
         {
+            getShiftoverview.Clear();
             var shifts = Database.GetShiftOverview();
-            foreach (var e in shifts)
+            foreach (var e in await shifts)
             {
                 getShiftoverview.Add(e);
             }
