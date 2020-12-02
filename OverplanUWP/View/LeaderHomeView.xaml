@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="OverplanUWP.View.LeaderHomeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OverplanUWP.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Light"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView Name="SideMenu"
+                        ItemInvoked="NavView_ItemInvoked"
+                        Loaded="NavView_Loaded">
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Uid="ShiftsNavItem" Icon="Clock" Content="All Shifts" FontSize="30" Tag="allShifts"/>
+                <NavigationViewItem x:Uid="RosterNavItem" Icon="Library" Content="Roster" FontSize="30" Tag="roster"/>
+            </NavigationView.MenuItems>
+            <Frame Margin="0,0,0,0" x:Name="LeaderView">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+        </NavigationView>
+
+    </Grid>
+</Page>
