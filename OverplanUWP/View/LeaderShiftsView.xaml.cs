@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OverplanUWP.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,11 @@ namespace OverplanUWP.View
     /// </summary>
     public sealed partial class LeaderShiftsView : Page
     {
+        public TestViewModel ViewModel { get; set; }
         public LeaderShiftsView()
         {
             this.InitializeComponent();
+            ViewModel = new ViewModel.TestViewModel();
         }
     }
 }
