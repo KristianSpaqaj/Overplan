@@ -24,8 +24,12 @@ namespace OverplanUWP.ViewModel
         public string name { get; set; }
         public string adress { get; set; }
         public string number { get; set; }
-        public DateTime dateFrom { get; set; } 
-        public DateTime dateTo { get; set; } 
+        public DateTimeOffset dateFrom { get; set; } 
+        public DateTimeOffset dateTo { get; set; } 
+        public TimeSpan timeFrom { get; set; }
+        public TimeSpan timeTo { get; set; }
+
+        
 
         public RelayCommand AddMedarbejder { get; set; }
         public RelayCommand HentMedarbejder { get; set; }
@@ -39,9 +43,10 @@ namespace OverplanUWP.ViewModel
             getShiftoverview = new ObservableCollection<ShiftOverview>();
             getMedarbejdersplan = new ObservableCollection<EmployeeOverview>();
 
-
-            dateFrom = DateTime.Now;
-            dateTo = dateFrom.AddDays(1);
+            timeFrom = DateTime.Now.TimeOfDay;
+            timeTo = DateTime.Now.TimeOfDay.Add(new TimeSpan(8,0,0));
+            dateFrom = DateTime.Today;
+            dateTo = DateTime.Today + timeTo;
 
             AddMedarbejder = new RelayCommand(PostEmployeeOverview);
             HentMedarbejder = new RelayCommand(GetEmployeeOverview);
@@ -66,8 +71,15 @@ namespace OverplanUWP.ViewModel
 
         private async void PostShiftOverview()
         {
-            ShiftOverview shift = new ShiftOverview(shiftID, selectedEmployee.EmployeeID, dateFrom, dateTo);
+            DateTime from = CombineDateTime(dateFrom, timeFrom);
+            DateTime to = CombineDateTime(dateTo, timeTo);
+            ShiftOverview shift = new ShiftOverview(shiftID, selectedEmployee.EmployeeID, from, to);
             await Database.Post<ShiftOverview>(shift);
+        }
+
+        public DateTime CombineDateTime(DateTimeOffset dateTimeOffset, TimeSpan timeSpan)
+        {
+            return dateTimeOffset.Date + timeSpan;
         }
 
         private async void GetShiftOverview()

@@ -31,7 +31,17 @@
             <StackPanel Grid.Row="1">
                 <Button Command="{Binding postShift, Mode=OneWay}" Content="tilføj en vagt"/>
                 <Button Command="{Binding getShift, Mode=OneWay}" Content="hent vagt"/>
-                <ListView ItemsSource="{Binding getMedarbejdersplan}" SelectedItem="{Binding selectedEmployee, Mode=TwoWay}">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <CalendarDatePicker Date="{Binding dateFrom, Mode=TwoWay}"/>
+                        <TimePicker Time="{Binding timeFrom,Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CalendarDatePicker Date="{Binding dateTo, Mode=TwoWay}"/>
+                        <TimePicker Time="{Binding timeTo, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+                <ListView ItemsSource="{Binding getMedarbejdersplan}" Height="500" Width="500" SelectedItem="{Binding selectedEmployee, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}"/>
@@ -39,12 +49,11 @@
                     </ListView.ItemTemplate>
             </ListView>
             </StackPanel>
-            <CalendarDatePicker Date="{Binding dateFrom, Mode=TwoWay}"/>
-            <CalendarDatePicker Date="{Binding dateTo, Mode=TwoWay}"/>
+            
 
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
-            <ListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding getShiftoverview}">
+            <ListView Grid.Column="1" Grid.Row="2" Height="500" Width="500" ItemsSource="{Binding getShiftoverview}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

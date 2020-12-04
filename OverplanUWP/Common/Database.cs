@@ -40,8 +40,9 @@ namespace OverplanUWP.Common
                 //Request JSON format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var js = JsonConvert.SerializeObject(obj, dateConverter);
+                string tableName = typeof(T).Name;
                 var content = new StringContent(js, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("api/ShiftOverviews", content);
+                var response = await client.PostAsync("api/" + tableName + "s", content);
 
                 //Get all the values from the database
                 //Check response -> throw exception if NOT successful
