@@ -22,26 +22,26 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" >
-            <TextBox Text="{Binding name, Mode=TwoWay}" FontSize="50"/>
-            <TextBox Text="{Binding adress, Mode=TwoWay}" FontSize="50"/>
-            <TextBox Text="{Binding number, Mode=TwoWay}" FontSize="50"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay}" FontSize="50"/>
+            <TextBox Text="{Binding Address, Mode=TwoWay}" FontSize="50"/>
+            <TextBox Text="{Binding PhoneNumber, Mode=TwoWay}" FontSize="50"/>
 
-            <Button Command="{Binding AddMedarbejder, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
-            <Button Command="{Binding HentMedarbejder, Mode=OneWay}" Content="Hent Medarbejderplan"/>
+            <Button Command="{Binding PostEmployeeOverviewCommand, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
+            <Button Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Hent Medarbejderplan"/>
             <StackPanel Grid.Row="1">
-                <Button Command="{Binding postShift, Mode=OneWay}" Content="tilføj en vagt"/>
-                <Button Command="{Binding getShift, Mode=OneWay}" Content="hent vagt"/>
+                <Button Command="{Binding PostShiftOverviewCommand, Mode=OneWay}" Content="tilføj en vagt"/>
+                <Button Command="{Binding GetShiftOverviewCommand, Mode=OneWay}" Content="hent vagt"/>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
-                        <CalendarDatePicker Date="{Binding dateFrom, Mode=TwoWay}"/>
-                        <TimePicker Time="{Binding timeFrom,Mode=TwoWay}"/>
+                        <CalendarDatePicker Date="{Binding DateFrom, Mode=TwoWay}"/>
+                        <TimePicker Time="{Binding TimeFrom,Mode=TwoWay}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <CalendarDatePicker Date="{Binding dateTo, Mode=TwoWay}"/>
-                        <TimePicker Time="{Binding timeTo, Mode=TwoWay}"/>
+                        <CalendarDatePicker Date="{Binding DateTo, Mode=TwoWay}"/>
+                        <TimePicker Time="{Binding TimeTo, Mode=TwoWay}"/>
                     </StackPanel>
                 </StackPanel>
-                <ListView ItemsSource="{Binding getMedarbejdersplan}" Height="500" Width="500" SelectedItem="{Binding selectedEmployee, Mode=TwoWay}">
+                <ListView ItemsSource="{Binding EmployeeOverviews}" Height="500" Width="500" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}"/>
@@ -53,7 +53,7 @@
 
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
-            <ListView Grid.Column="1" Grid.Row="2" Height="500" Width="500" ItemsSource="{Binding getShiftoverview}">
+            <ListView Grid.Column="1" Grid.Row="2" Height="500" Width="500" ItemsSource="{Binding ShiftOverviews}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
