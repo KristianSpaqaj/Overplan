@@ -22,6 +22,7 @@ namespace OverplanUWP.ViewModel
         public ObservableCollection<LoginOverview> LoginOverviews { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public bool Leader { get; set; }
         public RelayCommand PostLoginOverviewCommand { get; set; }
         public RelayCommand GetLoginOverviewCommand { get; set; }
 
@@ -99,7 +100,7 @@ namespace OverplanUWP.ViewModel
 
         private async void PostLoginOverview()
         {
-            LoginOverview login = new LoginOverview(Username, Password);
+            LoginOverview login = new LoginOverview(Username, Password, Leader);
             await LogInDatabase.Post<LoginOverview>(login);
         }
 
@@ -112,6 +113,17 @@ namespace OverplanUWP.ViewModel
                 LoginOverviews.Add(e);
             }
         }
+
+        private async void CreateNewUser()
+        {
+
+        }
+
+        private async void CheckLogin()
+        {
+
+        }
+
 
     }
 }

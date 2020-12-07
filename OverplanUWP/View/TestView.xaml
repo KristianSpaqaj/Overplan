@@ -77,16 +77,22 @@
                     <CompositeTransform TranslateX="262" TranslateY="428"/>
                 </Button.RenderTransform>
             </Button>
-            <TextBox Text="{Binding Username, Mode=TwoWay}"  TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5">
-                <TextBox.RenderTransform>
-                    <CompositeTransform TranslateX="-150" TranslateY="300"/>
-                </TextBox.RenderTransform>
-            </TextBox>
-            <TextBox  Text="{Binding Password, Mode=TwoWay}" TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5">
-                <TextBox.RenderTransform>
-                    <CompositeTransform TranslateX="-150" TranslateY="300"/>
-                </TextBox.RenderTransform>
-            </TextBox>
+            <StackPanel Width="164" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform TranslateX="-120" TranslateY="290"/>
+                </StackPanel.RenderTransform>
+                <TextBox x:Name="LoginName" Text="{Binding Username, Mode=TwoWay}"  TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5" HorizontalTextAlignment="Center">
+                    <TextBox.RenderTransform>
+                        <CompositeTransform TranslateX="0" TranslateY="0"/>
+                    </TextBox.RenderTransform>
+                </TextBox>
+                <TextBox x:Name="LoginPassword"  Text="{Binding Password, Mode=TwoWay}" TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5">
+                    <TextBox.RenderTransform>
+                        <CompositeTransform TranslateX="0" TranslateY="0"/>
+                    </TextBox.RenderTransform>
+                </TextBox>
+                <ToggleSwitch IsOn="{Binding Leader, Mode=TwoWay}"  OffContent="Employee" OnContent="Leader"  AutomationProperties.Name="simple ToggleSwitch"/>
+            </StackPanel>
             <ListView ItemsSource="{Binding LoginOverviews}" Height="224" Width="178" RenderTransformOrigin="0.5,0.5">
                 <ListView.RenderTransform>
                     <CompositeTransform TranslateX="150" TranslateY="120"/>
