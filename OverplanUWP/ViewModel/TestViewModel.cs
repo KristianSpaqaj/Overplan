@@ -47,12 +47,13 @@ namespace OverplanUWP.ViewModel
             PostShiftOverviewCommand = new RelayCommand(PostShiftOverview);
             GetShiftOverviewCommand = new RelayCommand(GetShiftOverview);
         }
+        //Uses Post method from Database Class using EmployeeOverview. It posts an Employee to the database.
         private async void PostEmployeeOverview()
         {
             EmployeeOverview employee = new EmployeeOverview(EmployeeID, Name, Address, PhoneNumber);
             await Database.Post<EmployeeOverview>(employee);
         }
-
+        //Uses Get method from Database Class using EmployeeOverview. It gets all of the Employees from the database.
         private async void GetEmployeeOverview()
         {
             EmployeeOverviews.Clear();
@@ -62,7 +63,7 @@ namespace OverplanUWP.ViewModel
                 EmployeeOverviews.Add(e);
             }
         }
-
+        //Uses Post method from Database Class using ShiftOverview. It posts a shift to the database.
         private async void PostShiftOverview()
         {
             DateTime from = CombineDateTime(DateFrom, TimeFrom);
@@ -71,7 +72,7 @@ namespace OverplanUWP.ViewModel
             await Database.Post<ShiftOverview>(shift);
         }
 
-
+        //uses Get method from Database Class using ShiftOverview. It gets all the registered shifts.
         private async void GetShiftOverview()
         {
             ShiftOverviews.Clear();
@@ -81,7 +82,7 @@ namespace OverplanUWP.ViewModel
                 ShiftOverviews.Add(e);
             }
         }
-
+        //Combines DateTimeOffset and Timespan for a working DateTime for PostShiftOverview.
         public DateTime CombineDateTime(DateTimeOffset dateTimeOffset, TimeSpan timeSpan)
         {
             return dateTimeOffset.Date + timeSpan;

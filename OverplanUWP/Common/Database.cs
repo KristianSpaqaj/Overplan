@@ -17,6 +17,7 @@ namespace OverplanUWP.Common
         private static JsonSerializerSettings settings = new JsonSerializerSettings();
         private static IsoDateTimeConverter dateConverter = new IsoDateTimeConverter
         {
+            //Explicitly stating how we want the DateTime format
             DateTimeFormat = "yyyy'-'MM'-'dd' 'HH':'mm':'ss.fff"
         };
 
@@ -48,7 +49,7 @@ namespace OverplanUWP.Common
                 //Check response -> throw exception if NOT successful
                 response.EnsureSuccessStatusCode();
 
-                //Get the employees as a ICollection
+                //Get the values as a ICollection
                 await response.Content.ReadAsAsync<T>();
             }
         }
@@ -79,7 +80,7 @@ namespace OverplanUWP.Common
                     //Check response -> throw exception if NOT successful
                     response.EnsureSuccessStatusCode();
 
-                    //Get the Employees as a ICollection
+                    //Get the values as a ICollection
                     var parsed = await response.Content.ReadAsAsync<ICollection<T>>();
 
                     foreach (var row in parsed)
