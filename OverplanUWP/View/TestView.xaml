@@ -47,9 +47,9 @@
                             <TextBlock Text="{Binding Name}"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-            </ListView>
+                </ListView>
             </StackPanel>
-            
+
 
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
@@ -62,6 +62,38 @@
                             <TextBlock Text="{Binding DateFrom}"/>
                             <TextBlock Text="{Binding DateTo}"/>
                         </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+            <Button Command="{Binding PostLoginOverviewCommand, Mode=OneWay}" x:Name="PostLogin" Content="PostLogin" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="175" TranslateY="460"/>
+                </Button.RenderTransform>
+            </Button>
+            <Button Command="{Binding GetLoginOverviewCommand, Mode=OneWay}" x:Name="GetLogin" Content="GetLogin" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="262" TranslateY="428"/>
+                </Button.RenderTransform>
+            </Button>
+            <TextBox Text="{Binding Username, Mode=TwoWay}"  TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5">
+                <TextBox.RenderTransform>
+                    <CompositeTransform TranslateX="-150" TranslateY="300"/>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <TextBox  Text="{Binding Password, Mode=TwoWay}" TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5">
+                <TextBox.RenderTransform>
+                    <CompositeTransform TranslateX="-150" TranslateY="300"/>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <ListView ItemsSource="{Binding LoginOverviews}" Height="224" Width="178" RenderTransformOrigin="0.5,0.5">
+                <ListView.RenderTransform>
+                    <CompositeTransform TranslateX="150" TranslateY="120"/>
+                </ListView.RenderTransform>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Username}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

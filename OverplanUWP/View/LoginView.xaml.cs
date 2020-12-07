@@ -35,5 +35,10 @@ namespace OverplanUWP.View
         {
             LoginFrame.Navigate(typeof(LeaderHomeView));
         }
+
+        private void LoginFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
     }
 }

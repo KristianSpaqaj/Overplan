@@ -36,7 +36,7 @@
             <TextBlock Text="Password" FontSize="30" Margin="40,20,310,65" Height="50" Width="130"/>
         </StackPanel>
         <Frame Grid.Row="1"
-               x:Name="LoginFrame" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1490" Height="1000">
+               x:Name="LoginFrame" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1490" Height="1000" Navigated="LoginFrame_Navigated">
         </Frame>
 
 

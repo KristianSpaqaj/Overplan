@@ -19,6 +19,12 @@ namespace OverplanUWP.ViewModel
         public ObservableCollection<EmployeeOverview> EmployeeOverviews { get; set; }
         public EmployeeOverview SelectedEmployee { get; set; }
 
+        public ObservableCollection<LoginOverview> LoginOverviews { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public RelayCommand PostLoginOverviewCommand { get; set; }
+        public RelayCommand GetLoginOverviewCommand { get; set; }
+
         public int ShiftID { get; set; }
         public int EmployeeID { get; set; }
         public string Name { get; set; }
@@ -37,6 +43,10 @@ namespace OverplanUWP.ViewModel
         {
             ShiftOverviews = new ObservableCollection<ShiftOverview>();
             EmployeeOverviews = new ObservableCollection<EmployeeOverview>();
+
+            LoginOverviews = new ObservableCollection<LoginOverview>();
+            PostLoginOverviewCommand = new RelayCommand(PostLoginOverview);
+            GetLoginOverviewCommand = new RelayCommand(GetLoginOverview);
 
             TimeFrom = DateTime.Now.TimeOfDay;
             TimeTo = DateTime.Now.TimeOfDay;
@@ -85,6 +95,22 @@ namespace OverplanUWP.ViewModel
         public DateTime CombineDateTime(DateTimeOffset dateTimeOffset, TimeSpan timeSpan)
         {
             return dateTimeOffset.Date + timeSpan;
+        }
+
+        private async void PostLoginOverview()
+        {
+            LoginOverview login = new LoginOverview(Username, Password);
+            await LogInDatabase.Post<LoginOverview>(login);
+        }
+
+        private async void GetLoginOverview()
+        {
+            LoginOverviews.Clear();
+            var login = LogInDatabase.Get<LoginOverview>();
+            foreach (var e in await login)
+            {
+                LoginOverviews.Add(e);
+            }
         }
 
     }
