@@ -14,7 +14,7 @@
     <Page.DataContext>
         <viewmodel:TestViewModel/>
     </Page.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="57*"/>
@@ -22,13 +22,27 @@
         </Grid.RowDefinitions>
 
 
-        <controls:DataGrid x:Name="dataGrid"
-                           Height="300" Margin="300,293,300,350"
-                           AutoGenerateColumns="True"
+        <controls:DataGrid x:Name="dataGrid" Margin="0,37,272,32"
+                           Width="Auto"
+                           AutoGenerateColumns="False"
+                           GridLinesVisibility="All"
+                           AlternatingRowBackground="LightBlue"
+                           HorizontalGridLinesBrush="Black"
+                           VerticalGridLinesBrush="Gray"
+                           HeadersVisibility="All"
+                           RowHeight="70"
+                           IsReadOnly="True"
                            ItemsSource="{Binding getShiftoverview}" Grid.Row="1">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn Header="VagtID" Binding="{Binding ShiftID}" FontSize="30" />
+                <controls:DataGridTextColumn Header="MedarbejderID" Binding="{Binding EmployeeID}" FontSize="30"/>
+                <controls:DataGridTextColumn Header="Dato fra" Binding="{Binding DateFrom}" FontSize="30"/>
+                <controls:DataGridTextColumn Header="Dato til" Binding="{Binding DateTo}" FontSize="30"/>
+            </controls:DataGrid.Columns>
 
         </controls:DataGrid>
         <Button Command="{Binding getShift, Mode=OneWay}" Content="Hent Vagt" VerticalAlignment="Top" Grid.Row="1"/>
+        
 
 
     </Grid>

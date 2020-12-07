@@ -146,6 +146,9 @@
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LogoutView.xaml.cs">
+      <DependentUpon>LogoutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MyShiftsEmployeeView.xaml.cs">
       <DependentUpon>MyShiftsEmployeeView.xaml</DependentUpon>
     </Compile>
@@ -198,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LogoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
