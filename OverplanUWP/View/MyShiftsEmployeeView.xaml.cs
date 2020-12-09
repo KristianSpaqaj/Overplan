@@ -22,6 +22,8 @@ namespace OverplanUWP.View
     /// </summary>
     public sealed partial class MyShiftsEmployeeView : Page
     {
+        
+
         public MyShiftsEmployeeView()
         {
             this.InitializeComponent();

@@ -22,14 +22,26 @@
         </Grid.RowDefinitions>
 
 
-        <controls:DataGrid x:Name="dataGrid"
-                           Height="300" Margin="300,293,300,350"
-                           AutoGenerateColumns="True"
-                           ItemsSource="{Binding getShiftoverview}" Grid.Row="1"
-                           GridLinesVisibility="All">
+        <controls:DataGrid x:Name="dataGrid" Margin="0,37,272,32"
+                           Width="Auto"
+                           AutoGenerateColumns="False"
+                           GridLinesVisibility="All"
+                           AlternatingRowBackground="LightBlue"
+                           HorizontalGridLinesBrush="Black"
+                           VerticalGridLinesBrush="Gray"
+                           HeadersVisibility="All"
+                           RowHeight="70"
+                           IsReadOnly="True"
+                           ItemsSource="{Binding EmployeeOverviews}" Grid.Row="1">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn Header="MedarbejderID" Binding="{Binding EmployeeID}" FontSize="30" />
+                <controls:DataGridTextColumn Header="Navn" Binding="{Binding Name}" FontSize="30"/>
+                <controls:DataGridTextColumn Header="Adresse" Binding="{Binding Adress}" FontSize="30"/>
+                <controls:DataGridTextColumn Header="Telefonnummer" Binding="{Binding Number}" FontSize="30"/>
+            </controls:DataGrid.Columns>
 
         </controls:DataGrid>
-        <Button Command="{Binding getShift, Mode=OneWay}" Content="Hent Vagt" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Hent Medarbejder" VerticalAlignment="Top" Grid.Row="1"/>
 
 
 

@@ -32,7 +32,7 @@
                            HeadersVisibility="All"
                            RowHeight="70"
                            IsReadOnly="True"
-                           ItemsSource="{Binding getShiftoverview}" Grid.Row="1">
+                           ItemsSource="{Binding ShiftOverviews}" Grid.Row="1">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn Header="VagtID" Binding="{Binding ShiftID}" FontSize="30" />
                 <controls:DataGridTextColumn Header="MedarbejderID" Binding="{Binding EmployeeID}" FontSize="30"/>
@@ -41,7 +41,7 @@
             </controls:DataGrid.Columns>
 
         </controls:DataGrid>
-        <Button Command="{Binding getShift, Mode=OneWay}" Content="Hent Vagt" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button Command="{Binding GetShiftOverviewCommand, Mode=OneWay}" Content="Hent Vagt" VerticalAlignment="Top" Grid.Row="1"/>
         
 
 

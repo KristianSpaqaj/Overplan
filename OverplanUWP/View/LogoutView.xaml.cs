@@ -24,7 +24,7 @@ namespace OverplanUWP.View
     {
         public LogoutView()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();  
         }
         private void click_logoutView(object sender, RoutedEventArgs e)
         {

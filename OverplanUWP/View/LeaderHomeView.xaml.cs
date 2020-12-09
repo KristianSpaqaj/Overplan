@@ -44,7 +44,9 @@ namespace OverplanUWP.View
         {
             if (args.IsSettingsInvoked)
             {
-                LeaderView.Navigate(typeof(LeaderShiftsView));
+                LeaderView.Navigate(typeof(LogoutView));
+                SideMenu.IsPaneVisible = false;
+                
             }
             else
             {

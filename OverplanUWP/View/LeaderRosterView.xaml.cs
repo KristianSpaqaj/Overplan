@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
+using OverplanUWP.Model;
+using OverplanUWP.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +27,12 @@ namespace OverplanUWP.View
     /// </summary>
     public sealed partial class LeaderRosterView : Page
     {
+        public TestViewModel ViewModel { get; set; }
         public LeaderRosterView()
         {
             this.InitializeComponent();
-        }
+            ViewModel = new ViewModel.TestViewModel();
+
+        }       
     }
 }

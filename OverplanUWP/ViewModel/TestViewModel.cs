@@ -1,6 +1,8 @@
-﻿using OverplanUWP.Commands;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
+using OverplanUWP.Commands;
 using OverplanUWP.Common;
 using OverplanUWP.Model;
+using OverplanUWP.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,6 +21,8 @@ namespace OverplanUWP.ViewModel
         public ObservableCollection<EmployeeOverview> EmployeeOverviews { get; set; }
         public EmployeeOverview SelectedEmployee { get; set; }
 
+        public int FilterID { get; set; }
+
         public int ShiftID { get; set; }
         public int EmployeeID { get; set; }
         public string Name { get; set; }
@@ -33,6 +37,8 @@ namespace OverplanUWP.ViewModel
         public RelayCommand PostShiftOverviewCommand { get; set; }
         public RelayCommand GetShiftOverviewCommand { get; set; }
 
+        public RelayCommand GetMyShiftOverviewCommand { get; set; }
+
         public TestViewModel()
         {
             ShiftOverviews = new ObservableCollection<ShiftOverview>();
@@ -46,6 +52,25 @@ namespace OverplanUWP.ViewModel
             GetEmployeeOverviewCommand = new RelayCommand(GetEmployeeOverview);
             PostShiftOverviewCommand = new RelayCommand(PostShiftOverview);
             GetShiftOverviewCommand = new RelayCommand(GetShiftOverview);
+
+            GetMyShiftOverviewCommand = new RelayCommand(GetMyShiftOverview);
+
+        }
+
+        private async void GetMyShiftOverview()
+        {
+            ShiftOverviews.Clear();
+            var shifts = Database.Get<ShiftOverview>();
+            
+            foreach (var e in await shifts)
+            {
+                var id = e.EmployeeID;
+                if (id == FilterID)
+                {
+                    ShiftOverviews.Add(e);
+                }
+                
+            }
         }
         private async void PostEmployeeOverview()
         {
