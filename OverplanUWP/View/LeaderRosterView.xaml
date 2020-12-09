@@ -43,33 +43,11 @@
 
 
         </controls:DataGrid>
-        <CommandBar Background="Aqua" Margin="12"
-                    IsOpen="True" IsSticky="True"
-                    DefaultLabelPosition="Right"
-                    Content="Filter that shit">
-            <AppBarButton Icon="Filter"
-                          Label="Filter">
-
-            </AppBarButton>
-        </CommandBar>
-        <Button Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Hent Medarbejder" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox x:Name="FilterByName"    
+        
+        <Button Command="{Binding GetSpecificEmployeeOverviewCommand, Mode=OneWay}" Content="Hent Medarbejder" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="FilterByName" Text="{Binding FilterName, Mode=TwoWay}"    
                  FontSize="20" Margin="250,0,820,906" Grid.Row="1" />
-        <ListView
-            x:Name="FilteredListViewTest"
-            SelectionMode="Single"
-            ShowsScrollingPlaceholders="True"
-            Height="400"
-            Width="400"
-            BorderThickness="1"
-            BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" Margin="894,243,206,300" Grid.Row="1"
-            ItemsSource="{Binding EmployeeOverviews, Mode=TwoWay}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        
 
     </Grid>
 </Page>

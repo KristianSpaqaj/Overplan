@@ -22,6 +22,7 @@ namespace OverplanUWP.ViewModel
         public EmployeeOverview SelectedEmployee { get; set; }
 
         public int FilterID { get; set; }
+        public string FilterName { get; set; }
 
         public int ShiftID { get; set; }
         public int EmployeeID { get; set; }
@@ -38,6 +39,7 @@ namespace OverplanUWP.ViewModel
         public RelayCommand GetShiftOverviewCommand { get; set; }
 
         public RelayCommand GetMyShiftOverviewCommand { get; set; }
+        public RelayCommand GetSpecificEmployeeOverviewCommand { get; set; }
 
         public TestViewModel()
         {
@@ -54,6 +56,7 @@ namespace OverplanUWP.ViewModel
             GetShiftOverviewCommand = new RelayCommand(GetShiftOverview);
 
             GetMyShiftOverviewCommand = new RelayCommand(GetMyShiftOverview);
+            GetSpecificEmployeeOverviewCommand = new RelayCommand(GetSpecificEmployeeOverview);
 
         }
 
@@ -72,6 +75,22 @@ namespace OverplanUWP.ViewModel
                 
             }
         }
+
+        private async void GetSpecificEmployeeOverview()
+        {
+            EmployeeOverviews.Clear();
+            var employees = Database.Get<EmployeeOverview>();
+            foreach (var e in await employees)
+            {
+                var id = e.Name;
+                if (id.Contains(FilterName))
+                {
+                    EmployeeOverviews.Add(e);
+                }
+                
+            }
+        }
+
         private async void PostEmployeeOverview()
         {
             EmployeeOverview employee = new EmployeeOverview(EmployeeID, Name, Address, PhoneNumber);
