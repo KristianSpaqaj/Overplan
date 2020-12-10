@@ -15,11 +15,15 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            
+
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Margin="255,240,0,0"
                     HorizontalAlignment="Left" VerticalAlignment="Center" Width="1000" Grid.Row="1" Height="60">
-            <Button Command="{Binding LoginCheckCommand, Mode=OneWay}" x:Name="LoginAsEmployee" Content="Login as Employee" Margin="90,0,10,0" Height="60" Width="379" FontSize="30" />
+            <Button Command="{Binding LoginCheckCommand, Mode=OneWay}" x:Name="Login" Content="Login" Margin="90,0,10,0" Height="60" Width="159" FontSize="30" RenderTransformOrigin="0.5,0.5" >
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="370"/>
+                </Button.RenderTransform>
+            </Button>
 
         </StackPanel>
 
