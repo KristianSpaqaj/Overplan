@@ -17,6 +17,7 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Uid="ShiftsNavItem" Icon="Clock" Content="All Shifts" FontSize="30" Tag="allShifts"/>
                 <NavigationViewItem x:Uid="RosterNavItem" Icon="Library" Content="Roster" FontSize="30" Tag="roster"/>
+                
             </NavigationView.MenuItems>
             <Frame Margin="0,0,0,0" x:Name="LeaderView">
                 <Frame.ContentTransitions>

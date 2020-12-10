@@ -1,16 +1,82 @@
 ﻿<Page
     x:Class="OverplanUWP.View.LeaderRosterView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:OverplanUWP.View"
+    xmlns:viewmodel="using:OverplanUWP.ViewModel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     RequestedTheme="Light"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.DataContext>
+        <viewmodel:LeaderRosterViewModel/>
+    </Page.DataContext>
     <Grid>
-        <TextBlock Text="Leader Roster View" FontSize="100"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.RowSpan="1" Grid.Column="0">
+            <TextBlock Text="Leader Roster View" FontSize="50"/>
+            <TextBox PlaceholderText="Navn" Text="{Binding Name, Mode=TwoWay}" Margin="-450,0,0,0" Width="300" FontSize="25"/>
+            <TextBox PlaceholderText="Adresse" Text="{Binding Address, Mode=TwoWay}" Margin="-450,0,0,0" Width="300" FontSize="25"/>
+            <TextBox PlaceholderText="Telefon nummer" Text="{Binding PhoneNumber, Mode=TwoWay}" Margin="-450,0,0,0" Width="300" FontSize="25"/>
+            <StackPanel Orientation="Horizontal">
+            <Button BorderBrush="Black" Command="{Binding PostEmployeeOverviewCommand, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
+            <Button BorderBrush="Black" Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Hent alle medarbejder"/>
+            </StackPanel>
+        </StackPanel>
+        <controls:DataGrid Grid.Column="1" Grid.Row="0"
+            x:Name="dataGrid"
+            AutoGenerateColumns="True"
+            Width="Auto" Height="Auto"
+            GridLinesVisibility="All"
+            AlternatingRowBackground="LightBlue"
+            HorizontalGridLinesBrush="Black"
+            VerticalGridLinesBrush="Gray"
+            HeadersVisibility="All"
+            RowHeight="40"
+            ItemsSource="{Binding EmployeeOverviews}"
+            SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+        </controls:DataGrid>
+        
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Button BorderBrush="Black" Command="{Binding GetShiftOverviewCommand, Mode=OneWay}" Content="hent vagt"/>
+                    <Button BorderBrush="Black" Command="{Binding PostShiftOverviewCommand, Mode=OneWay}" Content="tilføj en vagt"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <CalendarDatePicker Date="{Binding DateFrom, Mode=TwoWay}"/>
+                    <TimePicker Time="{Binding TimeFrom,Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CalendarDatePicker Date="{Binding DateTo, Mode=TwoWay}"/>
+                    <TimePicker Time="{Binding TimeTo, Mode=TwoWay}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <controls:DataGrid Grid.Column="1" Grid.Row="1"
+            x:Name="dataGrid2"
+            AutoGenerateColumns="True"
+            Width="Auto" Height="Auto"
+            GridLinesVisibility="All"
+            AlternatingRowBackground="LightBlue"
+            HorizontalGridLinesBrush="Black"
+            VerticalGridLinesBrush="Gray"
+            HeadersVisibility="All"
+            RowHeight="40"
+            ItemsSource="{Binding ShiftOverviews}">
+            
+        </controls:DataGrid>
+
 
     </Grid>
 </Page>

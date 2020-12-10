@@ -25,7 +25,7 @@ namespace OverplanUWP.Common
         {
             settings.Converters.Add(dateConverter);
         }
-
+        //Methods are now Generic, So we can use any Class. 
         public static async Task Post<T>(T obj)
         {
             //Setup client handler

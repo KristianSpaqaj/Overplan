@@ -8,11 +8,11 @@ namespace OverplanUWP.Model
 {
     public class EmployeeOverview
     {
-        public EmployeeOverview(int employeeID, string name, string adress, string number)
+        public EmployeeOverview(int employeeID, string name, string address, string number)
         {
             EmployeeID = employeeID;
             Name = name;
-            Adress = adress;
+            Adress = address;
             Number = number;
         }
 
