@@ -27,7 +27,7 @@
                     HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Height="120">
 
             <TextBox Text="" FontSize="30" Margin="180,0,10,10" Height="50" Width="300" Background="Beige"/>
-            <TextBox Text="" FontSize="30" Margin="180,10,10,0" Height="50" Width="300" Background="Beige"/>
+            <PasswordBox FontSize="30" Margin="180,10,10,0" Height="50" Width="300" Background="Beige"/>
 
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="465,448,0,0"

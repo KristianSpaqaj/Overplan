@@ -24,7 +24,7 @@ namespace OverplanUWP.View
     {
         public LoginView()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();            
         }
 
         private void click_employeeRosterView(object sender, RoutedEventArgs e)

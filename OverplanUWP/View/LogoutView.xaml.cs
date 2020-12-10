@@ -20,13 +20,15 @@ namespace OverplanUWP.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MyShiftsEmployeeView : Page
+    public sealed partial class LogoutView : Page
     {
-        
-
-        public MyShiftsEmployeeView()
+        public LogoutView()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();  
+        }
+        private void click_logoutView(object sender, RoutedEventArgs e)
+        {
+            LogoutFrame.Navigate(typeof(LoginView));
         }
     }
 }
