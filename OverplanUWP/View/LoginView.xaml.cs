@@ -1,5 +1,9 @@
-﻿using System;
+﻿using OverplanUWP.Commands;
+using OverplanUWP.Common;
+using OverplanUWP.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,23 +26,15 @@ namespace OverplanUWP.View
     /// </summary>
     public sealed partial class LoginView : Page
     {
+
+
+
         public LoginView()
         {
+
             this.InitializeComponent();
-        }
-
-        private void click_employeeRosterView(object sender, RoutedEventArgs e)
-        {
-            LoginFrame.Navigate(typeof(EmployeeHomeView));
-        }
-        private void click_leaderRosterView(object sender, RoutedEventArgs e)
-        {
-            LoginFrame.Navigate(typeof(LeaderHomeView));
-        }
-
-        private void LoginFrame_Navigated(object sender, NavigationEventArgs e)
-        {
 
         }
     }
+
 }

@@ -114,16 +114,5 @@ namespace OverplanUWP.ViewModel
             }
         }
 
-        private async void CreateNewUser()
-        {
-
-        }
-
-        private async void CheckLogin()
-        {
-
-        }
-
-
     }
 }
