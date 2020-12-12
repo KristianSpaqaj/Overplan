@@ -10,7 +10,7 @@
     RequestedTheme="Light"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
-        <viewmodel:LoginViewModel/>
+        <viewmodel:TestViewModel/>
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>

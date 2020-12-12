@@ -26,15 +26,9 @@ namespace OverplanUWP.View
     /// </summary>
     public sealed partial class LoginView : Page
     {
-
-
-
         public LoginView()
         {
             this.InitializeComponent();
         }
-
-        }
     }
-
 }
