@@ -31,8 +31,8 @@ namespace OverplanUWP.View
 
         public LoginView()
         {
-
             this.InitializeComponent();
+        }
 
         }
     }

@@ -10,7 +10,7 @@
     RequestedTheme="Light"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
-        <viewmodel:TestViewModel/>
+        <viewmodel:LoginViewModel/>
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -42,9 +42,16 @@
                         <TimePicker Time="{Binding TimeTo, Mode=TwoWay}"/>
                     </StackPanel>
                 </StackPanel>
-                
+                <ListView ItemsSource="{Binding EmployeeOverviews}" Height="500" Width="500" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+            </ListView>
             </StackPanel>
             
+
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <ListView Grid.Column="1" Grid.Row="2" Height="500" Width="500" ItemsSource="{Binding ShiftOverviews}">
@@ -59,6 +66,50 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+
+            <Button Command="{Binding PostLoginOverviewCommand, Mode=OneWay}" x:Name="PostLogin" Content="PostLogin" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="175" TranslateY="460"/>
+                </Button.RenderTransform>
+            </Button>
+            <Button Command="{Binding GetLoginOverviewCommand, Mode=OneWay}" x:Name="GetLogin" Content="GetLogin" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="262" TranslateY="428"/>
+                </Button.RenderTransform>
+            </Button>
+            
+            <StackPanel Width="164" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform TranslateX="-120" TranslateY="290"/>
+                </StackPanel.RenderTransform>
+                <TextBox x:Name="LoginName" Text="{Binding Username, Mode=TwoWay}"  TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5" HorizontalTextAlignment="Center">
+                    <TextBox.RenderTransform>
+                        <CompositeTransform TranslateX="0" TranslateY="0"/>
+                    </TextBox.RenderTransform>
+                </TextBox>
+                <TextBox x:Name="LoginPassword"  Text="{Binding Password, Mode=TwoWay}" TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5">
+                    <TextBox.RenderTransform>
+                        <CompositeTransform TranslateX="0" TranslateY="0"/>
+                    </TextBox.RenderTransform>
+                </TextBox>
+                <ToggleSwitch IsOn="{Binding Leader, Mode=TwoWay}"  OffContent="Employee" OnContent="Leader"  AutomationProperties.Name="simple ToggleSwitch"/>
+            </StackPanel>
+            <ListView ItemsSource="{Binding LoginOverviews}" Height="224" Width="178" RenderTransformOrigin="0.5,0.5">
+                <ListView.RenderTransform>
+                    <CompositeTransform TranslateX="150" TranslateY="120"/>
+                </ListView.RenderTransform>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Username}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Command="{Binding DeleteLoginOverviewCommand, Mode=OneWay}" Content="DeleteLogin" RenderTransformOrigin="0.5,0.5" Width="94">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="75" TranslateY="76"/>
+                </Button.RenderTransform>
+            </Button>
         </StackPanel>
         <ListView ItemsSource="{Binding EmployeeOverviews}" Grid.Column="1" Height="Auto" Width="500" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
             <ListView.ItemTemplate>
