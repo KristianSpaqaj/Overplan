@@ -11,6 +11,7 @@
 
 using System;
 using System.Windows.Input;
+using Windows.UI.Xaml.Navigation;
 
 namespace OverplanUWP.Commands
 {
@@ -25,6 +26,7 @@ namespace OverplanUWP.Commands
     {
         private readonly Action _execute;
         private readonly Func<bool> _canExecute;
+        private Action<object, NavigationEventArgs> loginFrame_Navigated;
 
         /// <summary>
         /// Raised when RaiseCanExecuteChanged is called.
@@ -51,6 +53,11 @@ namespace OverplanUWP.Commands
                 throw new ArgumentNullException("execute");
             _execute = execute;
             _canExecute = canExecute;
+        }
+
+        public RelayCommand(Action<object, NavigationEventArgs> loginFrame_Navigated)
+        {
+            this.loginFrame_Navigated = loginFrame_Navigated;
         }
 
         /// <summary>
