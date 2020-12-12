@@ -10,9 +10,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <NavigationView Name="SideMenu"
                         ItemInvoked="NavView_ItemInvoked"
-                        Loaded="NavView_Loaded">
+                        Loaded="NavView_Loaded"
+                        PaneDisplayMode="LeftCompact">
 
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Uid="ShiftsNavItem" Icon="Clock" Content="My Shifts" FontSize="30" Tag="myShifts"/>
@@ -26,6 +30,9 @@
                 </Frame.ContentTransitions>
             </Frame>
         </NavigationView>
+        <Frame x:Name="EmployeeViewWhole" Grid.Row="0">
+            
+        </Frame>
 
     </Grid>
 </Page>

@@ -44,7 +44,7 @@ namespace OverplanUWP.View
         {
             if (args.IsSettingsInvoked)
             {
-                EmployeeView.Navigate(typeof(MyShiftsEmployeeView));
+                EmployeeViewWhole.Navigate(typeof(LogoutView));
             }
             else
             {
