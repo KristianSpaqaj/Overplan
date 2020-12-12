@@ -22,11 +22,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
         <StackPanel Grid.RowSpan="1" Grid.Column="0">
             <TextBlock Text="Leader Roster View" FontSize="50"/>
-            <TextBox PlaceholderText="Navn" Text="{Binding Name, Mode=TwoWay}" Margin="-450,0,0,0" Width="300" FontSize="25"/>
-            <TextBox PlaceholderText="Adresse" Text="{Binding Address, Mode=TwoWay}" Margin="-450,0,0,0" Width="300" FontSize="25"/>
-            <TextBox PlaceholderText="Telefon nummer" Text="{Binding PhoneNumber, Mode=TwoWay}" Margin="-450,0,0,0" Width="300" FontSize="25"/>
+            <TextBox PlaceholderText="Navn" Text="{Binding Name, Mode=TwoWay}" Margin="-600,0,0,0" Width="300" FontSize="25"/>
+            <TextBox PlaceholderText="Adresse" Text="{Binding Address, Mode=TwoWay}" Margin="-600,0,0,0" Width="300" FontSize="25"/>
+            <TextBox PlaceholderText="Telefon nummer" Text="{Binding PhoneNumber, Mode=TwoWay}" Margin="-600,0,0,0" Width="300" FontSize="25"/>
             <StackPanel Orientation="Horizontal">
             <Button BorderBrush="Black" Command="{Binding PostEmployeeOverviewCommand, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
             <Button BorderBrush="Black" Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Hent alle medarbejder"/>

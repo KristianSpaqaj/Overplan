@@ -12,12 +12,14 @@
     <Grid>
         <NavigationView Name="SideMenu"
                         ItemInvoked="NavView_ItemInvoked"
-                        Loaded="NavView_Loaded">
+                        Loaded="NavView_Loaded"
+                        PaneDisplayMode="LeftCompact">
+                        
 
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Uid="ShiftsNavItem" Icon="Clock" Content="All Shifts" FontSize="30" Tag="allShifts"/>
                 <NavigationViewItem x:Uid="RosterNavItem" Icon="Library" Content="Roster" FontSize="30" Tag="roster"/>
-                
+                <NavigationViewItem x:Uid="LeaderNavItem" Icon="Admin" Content="Management" FontSize="30" Tag="management"/>
             </NavigationView.MenuItems>
             <Frame Margin="0,0,0,0" x:Name="LeaderView">
                 <Frame.ContentTransitions>

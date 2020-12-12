@@ -81,7 +81,7 @@ namespace OverplanUWP.ViewModel
         {
             DateTime from = CombineDateTime(DateFrom, TimeFrom);
             DateTime to = CombineDateTime(DateTo, TimeTo);
-            ShiftOverview shift = new ShiftOverview(ShiftID, SelectedEmployee.EmployeeID, from, to);
+            ShiftOverview shift = new ShiftOverview(ShiftID, SelectedEmployee.ID, from, to);
             await Database.Post<ShiftOverview>(shift);
         }
 

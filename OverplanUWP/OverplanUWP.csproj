@@ -125,6 +125,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\EmployeeOverview.cs" />
+    <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\ShiftOverview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\LeaderRosterViewModel.cs" />

@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace OverplanUWP.Model
 {
-    public class ShiftOverview
+    public class ShiftOverview : IModel
     {
         public ShiftOverview(int shiftID, int employeeID, DateTime dateFrom, DateTime dateTo)
         {
-            ShiftID = shiftID;
+            ID = shiftID;
             EmployeeID = employeeID;
             DateFrom = dateFrom;
             DateTo = dateTo;
         }
 
-        public int ShiftID { get; set; }
+        public int ID { get; set; }
         public int EmployeeID { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }

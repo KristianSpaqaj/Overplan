@@ -19,6 +19,7 @@ namespace OverplanUWP.ViewModel
         public ObservableCollection<ShiftOverview> ShiftOverviews { get; set; }
         public ObservableCollection<EmployeeOverview> EmployeeOverviews { get; set; }
         public EmployeeOverview SelectedEmployee { get; set; }
+        
 
         public int FilterID { get; set; }
         public string FilterName { get; set; }
@@ -36,7 +37,7 @@ namespace OverplanUWP.ViewModel
         public RelayCommand GetEmployeeOverviewCommand { get; set; }
         public RelayCommand PostShiftOverviewCommand { get; set; }
         public RelayCommand GetShiftOverviewCommand { get; set; }
-
+        public RelayCommand DeleteShiftOverviewCommand { get; set; }
         public RelayCommand GetMyShiftOverviewCommand { get; set; }
         public RelayCommand GetSpecificEmployeeOverviewCommand { get; set; }
 
@@ -53,9 +54,10 @@ namespace OverplanUWP.ViewModel
             GetEmployeeOverviewCommand = new RelayCommand(GetEmployeeOverview);
             PostShiftOverviewCommand = new RelayCommand(PostShiftOverview);
             GetShiftOverviewCommand = new RelayCommand(GetShiftOverview);
-
+            DeleteShiftOverviewCommand = new RelayCommand(DeleteShiftOverview);
             GetMyShiftOverviewCommand = new RelayCommand(GetMyShiftOverview);
             GetSpecificEmployeeOverviewCommand = new RelayCommand(GetSpecificEmployeeOverview);
+
 
         }
 
@@ -110,7 +112,7 @@ namespace OverplanUWP.ViewModel
         {
             DateTime from = CombineDateTime(DateFrom, TimeFrom);
             DateTime to = CombineDateTime(DateTo, TimeTo);
-            ShiftOverview shift = new ShiftOverview(ShiftID, SelectedEmployee.EmployeeID, from, to);
+            ShiftOverview shift = new ShiftOverview(ShiftID, SelectedEmployee.ID, from, to);
             await Database.Post<ShiftOverview>(shift);
         }
 
@@ -123,6 +125,12 @@ namespace OverplanUWP.ViewModel
             {
                 ShiftOverviews.Add(e);
             }
+        }
+
+        private async void DeleteShiftOverview()
+        {
+            EmployeeOverview employee = new EmployeeOverview(SelectedEmployee.ID, Name, Address, PhoneNumber);
+            await Database.Delete<EmployeeOverview>(employee);
         }
         //Combines DateTimeOffset and Timespan for a working DateTime for PostShiftOverview.
         public DateTime CombineDateTime(DateTimeOffset dateTimeOffset, TimeSpan timeSpan)

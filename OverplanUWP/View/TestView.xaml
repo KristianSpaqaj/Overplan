@@ -28,6 +28,7 @@
 
             <Button Command="{Binding PostEmployeeOverviewCommand, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
             <Button Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Hent Medarbejderplan"/>
+            <Button Command="{Binding DeleteShiftOverviewCommand, Mode=OneWay}" Content="Delete dat shit"/>
             <StackPanel Grid.Row="1">
                 <Button Command="{Binding PostShiftOverviewCommand, Mode=OneWay}" Content="tilføj en vagt"/>
                 <Button Command="{Binding GetShiftOverviewCommand, Mode=OneWay}" Content="hent vagt"/>
@@ -41,16 +42,9 @@
                         <TimePicker Time="{Binding TimeTo, Mode=TwoWay}"/>
                     </StackPanel>
                 </StackPanel>
-                <ListView ItemsSource="{Binding EmployeeOverviews}" Height="500" Width="500" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-            </ListView>
+                
             </StackPanel>
             
-
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <ListView Grid.Column="1" Grid.Row="2" Height="500" Width="500" ItemsSource="{Binding ShiftOverviews}">
@@ -66,5 +60,13 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
+        <ListView ItemsSource="{Binding EmployeeOverviews}" Grid.Column="1" Height="Auto" Width="500" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </Grid>
 </Page>
