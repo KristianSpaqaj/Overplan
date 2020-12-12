@@ -45,7 +45,7 @@ namespace OverplanUWP.ViewModel
         public RelayCommand GetEmployeeOverviewCommand { get; set; }
         public RelayCommand PostShiftOverviewCommand { get; set; }
         public RelayCommand GetShiftOverviewCommand { get; set; }
-        public RelayCommand DeleteShiftOverviewCommand { get; set; }
+        public RelayCommand DeleteEmployeeOverviewCommand { get; set; }
         public RelayCommand GetMyShiftOverviewCommand { get; set; }
         public RelayCommand GetSpecificEmployeeOverviewCommand { get; set; }
 
@@ -66,7 +66,7 @@ namespace OverplanUWP.ViewModel
             GetEmployeeOverviewCommand = new RelayCommand(GetEmployeeOverview);
             PostShiftOverviewCommand = new RelayCommand(PostShiftOverview);
             GetShiftOverviewCommand = new RelayCommand(GetShiftOverview);
-            DeleteShiftOverviewCommand = new RelayCommand(DeleteShiftOverview);
+            DeleteEmployeeOverviewCommand = new RelayCommand(DeleteEmployeeOverview);
             GetMyShiftOverviewCommand = new RelayCommand(GetMyShiftOverview);
             GetSpecificEmployeeOverviewCommand = new RelayCommand(GetSpecificEmployeeOverview);
 
@@ -103,12 +103,14 @@ namespace OverplanUWP.ViewModel
                 
             }
         }
+
         //Uses Post method from Database Class using EmployeeOverview. It posts an Employee to the database.
         private async void PostEmployeeOverview()
         {
             EmployeeOverview employee = new EmployeeOverview(EmployeeID, Name, Address, PhoneNumber);
             await Database.Post<EmployeeOverview>(employee);
         }
+
         //Uses Get method from Database Class using EmployeeOverview. It gets all of the Employees from the database.
         private async void GetEmployeeOverview()
         {
@@ -119,6 +121,7 @@ namespace OverplanUWP.ViewModel
                 EmployeeOverviews.Add(e);
             }
         }
+
         //Uses Post method from Database Class using ShiftOverview. It posts a shift to the database.
         private async void PostShiftOverview()
         {
@@ -126,26 +129,27 @@ namespace OverplanUWP.ViewModel
             DateTime to = CombineDateTime(DateTo, TimeTo);
             if (to < from)
             {
-                DisplayNoWifiDialog();
+                DisplayNoAccessDialog();
             }
             else
             {
                 ShiftOverview shift = new ShiftOverview(ShiftID, SelectedEmployee.ID, from, to);
                 await Database.Post<ShiftOverview>(shift);
             }
-            
         }
 
-        private async void DisplayNoWifiDialog()
+
+
+        private async void DisplayNoAccessDialog()
         {
-            ContentDialog noWifiDialog = new ContentDialog
+            ContentDialog noAccessDialog = new ContentDialog
             {
                 Title = "Bitch you thought",
-                Content = "Check your connection and try again.",
+                Content = "Dato og tid til må ikke være før dato og tid fra",
                 CloseButtonText = "Ok"
             };
 
-            ContentDialogResult result = await noWifiDialog.ShowAsync();
+            ContentDialogResult result = await noAccessDialog.ShowAsync();
         }
 
         //uses Get method from Database Class using ShiftOverview. It gets all the registered shifts.
@@ -159,7 +163,7 @@ namespace OverplanUWP.ViewModel
             }
         }
 
-        private async void DeleteShiftOverview()
+        private async void DeleteEmployeeOverview()
         {
             EmployeeOverview employee = new EmployeeOverview(SelectedEmployee.ID, Name, Address, PhoneNumber);
             await Database.Delete<EmployeeOverview>(employee);
