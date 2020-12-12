@@ -44,7 +44,7 @@ namespace OverplanUWP.View
         {
             if (args.IsSettingsInvoked)
             {
-                LeaderViewWhole.Navigate(typeof(LogoutView));
+                LeaderView.Navigate(typeof(LogoutView));
                 
             }
             else

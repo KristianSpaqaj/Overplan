@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace OverplanUWP.ViewModel
 {
@@ -112,8 +113,28 @@ namespace OverplanUWP.ViewModel
         {
             DateTime from = CombineDateTime(DateFrom, TimeFrom);
             DateTime to = CombineDateTime(DateTo, TimeTo);
-            ShiftOverview shift = new ShiftOverview(ShiftID, SelectedEmployee.ID, from, to);
-            await Database.Post<ShiftOverview>(shift);
+            if (to < from)
+            {
+                DisplayNoWifiDialog();
+            }
+            else
+            {
+                ShiftOverview shift = new ShiftOverview(ShiftID, SelectedEmployee.ID, from, to);
+                await Database.Post<ShiftOverview>(shift);
+            }
+            
+        }
+
+        private async void DisplayNoWifiDialog()
+        {
+            ContentDialog noWifiDialog = new ContentDialog
+            {
+                Title = "Bitch you thought",
+                Content = "Check your connection and try again.",
+                CloseButtonText = "Ok"
+            };
+
+            ContentDialogResult result = await noWifiDialog.ShowAsync();
         }
 
         //uses Get method from Database Class using ShiftOverview. It gets all the registered shifts.
