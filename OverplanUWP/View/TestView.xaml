@@ -10,7 +10,7 @@
     RequestedTheme="Light"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
-        <viewmodel:TestViewModel/>
+        <viewmodel:LoginViewModel/>
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -77,6 +77,7 @@
                     <CompositeTransform TranslateX="262" TranslateY="428"/>
                 </Button.RenderTransform>
             </Button>
+            
             <StackPanel Width="164" RenderTransformOrigin="0.5,0.5">
                 <StackPanel.RenderTransform>
                     <CompositeTransform TranslateX="-120" TranslateY="290"/>
@@ -103,6 +104,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Command="{Binding DeleteLoginOverviewCommand, Mode=OneWay}" Content="DeleteLogin" RenderTransformOrigin="0.5,0.5" Width="94">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="75" TranslateY="76"/>
+                </Button.RenderTransform>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

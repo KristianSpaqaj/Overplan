@@ -88,5 +88,32 @@ namespace OverplanUWP.Common
 
             }
         }
+        //public static async Task Delete<T>(T obj)
+        //{
+        //    //Setup client handler
+        //    HttpClientHandler handler = new HttpClientHandler();
+        //    handler.UseDefaultCredentials = true;
+
+        //    using (var client = new HttpClient(handler))
+        //    {
+        //        //Initialize client
+        //        client.BaseAddress = new Uri(serverUrl);
+        //        client.DefaultRequestHeaders.Clear();
+
+        //        //Request JSON format
+        //        client.DefaultRequestHeaders.Accept.Remove(new MediaTypeWithQualityHeaderValue("application/json"));
+        //        var js = JsonConvert.DeserializeObject(obj);
+        //        string tableName = typeof(T).Name;
+        //        var content = new StringContent(js, Encoding.UTF8, "application/json");
+        //        var response = await client.DeleteAsync("api/" + tableName + "s", content);
+
+        //        //Get all the values from the database
+        //        //Check response -> throw exception if NOT successful
+        //        response.EnsureSuccessStatusCode();
+
+        //        //Get the employees as a ICollection
+        //        await response.Content.ReadAsAsync<T>();
+        //    }
+        //}
     }
 }
