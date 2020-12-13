@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OverplanUWP.Model
 {
-    public class LoginOverview
+    public class LoginOverview 
     {
         public LoginOverview(string username, string password, bool leader)
         {

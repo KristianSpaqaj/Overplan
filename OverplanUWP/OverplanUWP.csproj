@@ -143,6 +143,9 @@
     <Compile Include="View\LeaderHomeView.xaml.cs">
       <DependentUpon>LeaderHomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LeaderLoginView.xaml.cs">
+      <DependentUpon>LeaderLoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LeaderRosterView.xaml.cs">
       <DependentUpon>LeaderRosterView.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LeaderHomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LeaderLoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,6 +13,8 @@ namespace OverplanUWP.ViewModel
     public class LoginViewModel
     {
         public ObservableCollection<LoginOverview> LoginOverviews { get; set; }
+        public LoginOverview SelectedUsername { get; set; }
+
         public string Username { get; set; }
         public string Password { get; set; }
         public bool Leader { get; set; }
@@ -23,7 +25,7 @@ namespace OverplanUWP.ViewModel
         public RelayCommand GetLoginOverviewCommand { get; set; }
         public RelayCommand LoginCheckCommand { get; set; }
         public LoginOverview SelectedLoginHelp { get => _LoginHelp; set { _LoginHelp = value; LoginFrame_Navigated(); } }
-        //public RelayCommand DeleteLoginOverviewCommand { get; set; }
+        public RelayCommand DeleteLoginOverviewCommand { get; set; }
 
         public LoginViewModel()
         {
@@ -31,7 +33,7 @@ namespace OverplanUWP.ViewModel
             PostLoginOverviewCommand = new RelayCommand(PostLoginOverview);
             GetLoginOverviewCommand = new RelayCommand(GetLoginOverview);
             LoginCheckCommand = new RelayCommand(LoginFrame_Navigated);
-            //DeleteLoginOverviewCommand = new RelayCommand(DeleteLoginOverview);
+            DeleteLoginOverviewCommand = new RelayCommand(DeleteLoginOverview);
         }
 
         private async void PostLoginOverview()
@@ -49,11 +51,11 @@ namespace OverplanUWP.ViewModel
                 LoginOverviews.Add(e);
             }
         }
-        //private async void DeleteLoginOverview()
-        //{
-        //    LoginOverview login = new LoginOverview(Username, Password, Leader);
-        //    await LogInDatabase.Delete<LoginOverview>(login);
-        //}
+        private async void DeleteLoginOverview()
+        {
+            LoginOverview login = new LoginOverview(SelectedUsername.Username, Password, Leader);
+            await LogInDatabase.Delete<LoginOverview>(login);
+        }
 
         public async void LoginFrame_Navigated()
         {
