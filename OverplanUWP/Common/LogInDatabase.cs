@@ -39,7 +39,7 @@ namespace OverplanUWP.Common
                 //Check response -> throw exception if NOT successful
                 response.EnsureSuccessStatusCode();
 
-                //Get the employees as a ICollection
+                //Get the Logins as a ICollection
                 await response.Content.ReadAsAsync<T>();
             }
         }
@@ -70,7 +70,7 @@ namespace OverplanUWP.Common
                     //Check response -> throw exception if NOT successful
                     response.EnsureSuccessStatusCode();
 
-                    //Get the Employees as a ICollection
+                    //Get the Logins as a ICollection
                     var parsed = await response.Content.ReadAsAsync<ICollection<T>>();
 
                     foreach (var row in parsed)
