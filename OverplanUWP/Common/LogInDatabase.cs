@@ -39,7 +39,7 @@ namespace OverplanUWP.Common
                 //Check response -> throw exception if NOT successful
                 response.EnsureSuccessStatusCode();
 
-                //Get the employees as a ICollection
+                //Get the Logins as a ICollection
                 await response.Content.ReadAsAsync<T>();
             }
         }
@@ -70,7 +70,7 @@ namespace OverplanUWP.Common
                     //Check response -> throw exception if NOT successful
                     response.EnsureSuccessStatusCode();
 
-                    //Get the Employees as a ICollection
+                    //Get the Logins as a ICollection
                     var parsed = await response.Content.ReadAsAsync<ICollection<T>>();
 
                     foreach (var row in parsed)
@@ -88,32 +88,32 @@ namespace OverplanUWP.Common
 
             }
         }
-        //public static async Task Delete<T>(T obj)
-        //{
-        //    //Setup client handler
-        //    HttpClientHandler handler = new HttpClientHandler();
-        //    handler.UseDefaultCredentials = true;
+        public static async Task Delete<T>(T obj) where T : LoginOverview
+        {
+            //Setup client handler
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
 
-        //    using (var client = new HttpClient(handler))
-        //    {
-        //        //Initialize client
-        //        client.BaseAddress = new Uri(serverUrl);
-        //        client.DefaultRequestHeaders.Clear();
+            using (var client = new HttpClient(handler))
+            {
+                //Initialize client
+                client.BaseAddress = new Uri(serverUrl);
+                client.DefaultRequestHeaders.Clear();
 
-        //        //Request JSON format
-        //        client.DefaultRequestHeaders.Accept.Remove(new MediaTypeWithQualityHeaderValue("application/json"));
-        //        var js = JsonConvert.DeserializeObject(obj);
-        //        string tableName = typeof(T).Name;
-        //        var content = new StringContent(js, Encoding.UTF8, "application/json");
-        //        var response = await client.DeleteAsync("api/" + tableName + "s", content);
+                //Request JSON format
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var js = JsonConvert.SerializeObject(obj);
+                string tableName = typeof(T).Name;
+                string link = "api/" + tableName + "s/" + obj.Username.ToString();
+                var response = await client.DeleteAsync(link);
 
-        //        //Get all the values from the database
-        //        //Check response -> throw exception if NOT successful
-        //        response.EnsureSuccessStatusCode();
+                //Get all the values from the database
+                //Check response -> throw exception if NOT successful
+                response.EnsureSuccessStatusCode();
 
-        //        //Get the employees as a ICollection
-        //        await response.Content.ReadAsAsync<T>();
-        //    }
-        //}
+                //Get the values as a ICollection
+                await response.Content.ReadAsAsync<T>();
+            }
+        }
     }
 }
