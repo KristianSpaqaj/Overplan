@@ -30,7 +30,8 @@
             <TextBox PlaceholderText="Telefon nummer" Text="{Binding PhoneNumber, Mode=TwoWay}" Margin="-600,0,0,0" Width="300" FontSize="25"/>
             <StackPanel Orientation="Horizontal">
             <Button BorderBrush="Black" Command="{Binding PostEmployeeOverviewCommand, Mode=OneWay}" Content="Tilføj en ny medarbejder"/>
-            <Button BorderBrush="Black" Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Hent alle medarbejder"/>
+            <Button BorderBrush="Black" Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Hent Liste af Medarbejdere"/>
+                <Button BorderBrush="Black" Command="{Binding DeleteEmployeeOverviewCommand, Mode=OneWay}" Content="Fjern Medarbejder fra systemet"/>
             </StackPanel>
         </StackPanel>
         <controls:DataGrid Grid.Column="1" Grid.Row="0"
@@ -52,6 +53,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Button BorderBrush="Black" Command="{Binding GetShiftOverviewCommand, Mode=OneWay}" Content="hent vagt"/>
                     <Button BorderBrush="Black" Command="{Binding PostShiftOverviewCommand, Mode=OneWay}" Content="tilføj en vagt"/>
+                    <Button BorderBrush="Black" Command="{Binding DeleteShiftOverviewCommand, Mode=OneWay}" Content="Slet en vagt fra systemet"/>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal">
@@ -74,6 +76,7 @@
             VerticalGridLinesBrush="Gray"
             HeadersVisibility="All"
             RowHeight="40"
+            SelectedItem="{Binding SelectedShift, Mode=TwoWay}"
             ItemsSource="{Binding ShiftOverviews}">
             
         </controls:DataGrid>

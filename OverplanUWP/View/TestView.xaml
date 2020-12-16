@@ -32,6 +32,7 @@
             <StackPanel Grid.Row="1">
                 <Button Command="{Binding PostShiftOverviewCommand, Mode=OneWay}" Content="tilføj en vagt"/>
                 <Button Command="{Binding GetShiftOverviewCommand, Mode=OneWay}" Content="hent vagt"/>
+                <Button Command="{Binding PopUpCommand, Mode=OneWay}" Content="Pop up"/>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <CalendarDatePicker Date="{Binding DateFrom, Mode=TwoWay}"/>

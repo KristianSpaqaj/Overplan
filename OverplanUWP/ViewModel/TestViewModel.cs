@@ -48,6 +48,7 @@ namespace OverplanUWP.ViewModel
         public RelayCommand DeleteEmployeeOverviewCommand { get; set; }
         public RelayCommand GetMyShiftOverviewCommand { get; set; }
         public RelayCommand GetSpecificEmployeeOverviewCommand { get; set; }
+        public RelayCommand PopUpCommand { get; set; }
 
         public TestViewModel()
         {
@@ -57,6 +58,7 @@ namespace OverplanUWP.ViewModel
             LoginOverviews = new ObservableCollection<LoginOverview>();
             PostLoginOverviewCommand = new RelayCommand(PostLoginOverview);
             GetLoginOverviewCommand = new RelayCommand(GetLoginOverview);
+            PopUpCommand = new RelayCommand(DisplayNoAccessDialog);
 
             TimeFrom = DateTime.Now.TimeOfDay;
             TimeTo = DateTime.Now.TimeOfDay;
@@ -69,7 +71,7 @@ namespace OverplanUWP.ViewModel
             DeleteEmployeeOverviewCommand = new RelayCommand(DeleteEmployeeOverview);
             GetMyShiftOverviewCommand = new RelayCommand(GetMyShiftOverview);
             GetSpecificEmployeeOverviewCommand = new RelayCommand(GetSpecificEmployeeOverview);
-
+            
 
         }
 
@@ -144,7 +146,7 @@ namespace OverplanUWP.ViewModel
         {
             ContentDialog noAccessDialog = new ContentDialog
             {
-                Title = "Bitch you thought",
+                Title = "Fejl! Dato og tid er indsat forkert",
                 Content = "Dato og tid til må ikke være før dato og tid fra",
                 CloseButtonText = "Ok"
             };
