@@ -34,14 +34,14 @@
                            IsReadOnly="True"
                            ItemsSource="{Binding EmployeeOverviews}" Grid.Row="1">
             <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Header="MedarbejderID" Binding="{Binding EmployeeID}" FontSize="30" />
-                <controls:DataGridTextColumn Header="Navn" Binding="{Binding Name}" FontSize="30"/>
-                <controls:DataGridTextColumn Header="Adresse" Binding="{Binding Adress}" FontSize="30"/>
-                <controls:DataGridTextColumn Header="Telefonnummer" Binding="{Binding Number}" FontSize="30"/>
+                <controls:DataGridTextColumn Header="EmployeeID" Binding="{Binding EmployeeID}" FontSize="30" />
+                <controls:DataGridTextColumn Header="Name" Binding="{Binding Name}" FontSize="30"/>
+                <controls:DataGridTextColumn Header="Address" Binding="{Binding Adress}" FontSize="30"/>
+                <controls:DataGridTextColumn Header="PhoneNumber" Binding="{Binding Number}" FontSize="30"/>
             </controls:DataGrid.Columns>
 
         </controls:DataGrid>
-        <Button Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Hent Medarbejder" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button Command="{Binding GetEmployeeOverviewCommand, Mode=OneWay}" Content="Get Employee" VerticalAlignment="Top" Grid.Row="1"/>
 
 
 

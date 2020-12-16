@@ -41,7 +41,7 @@
             </controls:DataGrid.Columns>
 
         </controls:DataGrid>
-        <Button Command="{Binding GetShiftOverviewCommand, Mode=OneWay}" Content="Hent Vagt" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button Command="{Binding GetShiftOverviewCommand, Mode=OneWay}" Content="Get shift" VerticalAlignment="Top" Grid.Row="1"/>
                
 
 
