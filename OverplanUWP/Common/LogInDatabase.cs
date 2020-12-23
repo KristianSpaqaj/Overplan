@@ -13,7 +13,7 @@ namespace OverplanUWP.Common
 {
     public static class LogInDatabase
     {
-        static string serverUrl = "https://weblogintest20201207140615.azurewebsites.net/";
+        static string serverUrl = "https://webservicefornu20201223111303.azurewebsites.net/";
         private static JsonSerializerSettings settings = new JsonSerializerSettings();
 
         public static async Task Post<T>(T obj)
