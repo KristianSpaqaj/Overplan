@@ -26,20 +26,7 @@ namespace OverplanUWP.View
         {
             this.InitializeComponent();
         }
-        private void NavView_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-
-            // set the initial SelectedItem 
-            foreach (NavigationViewItemBase item in SideMenu.MenuItems)
-            {
-                if (item is NavigationViewItem && item.Tag.ToString() == "My Shifts")
-                {
-                    SideMenu.SelectedItem = item;
-                    break;
-                }
-            }
-        }
+        
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)

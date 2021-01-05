@@ -149,9 +149,6 @@
     <Compile Include="View\LeaderRosterView.xaml.cs">
       <DependentUpon>LeaderRosterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LeaderShiftsView.xaml.cs">
-      <DependentUpon>LeaderShiftsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -206,10 +203,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LeaderRosterView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\LeaderShiftsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

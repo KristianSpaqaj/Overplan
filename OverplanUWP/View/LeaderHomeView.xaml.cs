@@ -26,25 +26,12 @@ namespace OverplanUWP.View
         {
             this.InitializeComponent();
         }
-        private void NavView_Loaded(object sender, RoutedEventArgs e)
-        {
-
-
-            // set the initial SelectedItem 
-            foreach (NavigationViewItemBase item in SideMenu.MenuItems)
-            {
-                if (item is NavigationViewItem && item.Tag.ToString() == "All Shifts")
-                {
-                    SideMenu.SelectedItem = item;
-                    break;
-                }
-            }
-        }
+        
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
-                LeaderView.Navigate(typeof(LogoutView));
+                LeaderViewWhole.Navigate(typeof(LogoutView));
                 
             }
             else
@@ -58,11 +45,8 @@ namespace OverplanUWP.View
         {
             switch (item.Tag)
             {
-                case "allShifts":
-                    LeaderView.Navigate(typeof(LeaderShiftsView));
-                    break;
 
-                case "roster":
+                case "management":
                     LeaderView.Navigate(typeof(LeaderRosterView));
                     break;
                 case "leaderlogin":

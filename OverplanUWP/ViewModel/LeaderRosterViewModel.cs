@@ -27,6 +27,8 @@ namespace OverplanUWP.ViewModel
         public DateTimeOffset DateTo { get; set; }
         public TimeSpan TimeFrom { get; set; }
         public TimeSpan TimeTo { get; set; }
+        public int FilterID { get; set; }
+        public string FilterName { get; set; }
 
         public RelayCommand GetEmployeeOverviewCommand { get; set; }
         public RelayCommand PostEmployeeOverviewCommand { get; set; }
@@ -34,6 +36,8 @@ namespace OverplanUWP.ViewModel
         public RelayCommand GetShiftOverviewCommand { get; set; }
         public RelayCommand PostShiftOverviewCommand { get; set; }
         public RelayCommand DeleteShiftOverviewCommand { get; set; }
+        public RelayCommand GetSpecificShiftOverviewCommand { get; set; }
+        public RelayCommand GetSpecificEmployeeOverviewCommand { get; set; }
 
         public LeaderRosterViewModel()
         {
@@ -52,6 +56,8 @@ namespace OverplanUWP.ViewModel
             PostShiftOverviewCommand = new RelayCommand(PostShiftOverview);
             GetShiftOverviewCommand = new RelayCommand(GetShiftOverview);
             DeleteShiftOverviewCommand = new RelayCommand(DeleteShiftOverview);
+            GetSpecificShiftOverviewCommand = new RelayCommand(GetSpecificShiftOverview);
+            GetSpecificEmployeeOverviewCommand = new RelayCommand(GetSpecificEmployeeOverview);
         }
 
         private async void GetEmployeeOverview()
@@ -130,6 +136,35 @@ namespace OverplanUWP.ViewModel
 
             ShiftOverview shift = new ShiftOverview(SelectedShift.ID, SelectedEmployee.ID, from, to);
             await Database.Delete<ShiftOverview>(shift);
+        }
+        private async void GetSpecificShiftOverview()
+        {
+            ShiftOverviews.Clear();
+            var shifts = Database.Get<ShiftOverview>();
+
+            foreach (var e in await shifts)
+            {
+                var id = e.EmployeeID;
+                if (id == FilterID)
+                {
+                    ShiftOverviews.Add(e);
+                }
+
+            }
+        }
+        private async void GetSpecificEmployeeOverview()
+        {
+            EmployeeOverviews.Clear();
+            var employees = Database.Get<EmployeeOverview>();
+            foreach (var e in await employees)
+            {
+                var id = e.Name;
+                if (id.Contains(FilterName))
+                {
+                    EmployeeOverviews.Add(e);
+                }
+
+            }
         }
     }
 }

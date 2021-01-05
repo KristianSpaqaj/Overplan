@@ -15,7 +15,6 @@
         </Grid.RowDefinitions>
         <NavigationView Name="SideMenu"
                         ItemInvoked="NavView_ItemInvoked"
-                        Loaded="NavView_Loaded"
                         PaneDisplayMode="LeftCompact">
 
             <NavigationView.MenuItems>
