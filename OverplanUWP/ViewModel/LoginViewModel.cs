@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace OverplanUWP.ViewModel
 {
@@ -18,6 +19,7 @@ namespace OverplanUWP.ViewModel
         public string Username { get; set; }
         public string Password { get; set; }
         public bool Leader { get; set; }
+        public bool LoginSucc { get; set; }
         public string Usernamevalue { get; set; }
         public string Passwordvalue { get; set; }
         private LoginOverview _LoginHelp;
@@ -69,14 +71,31 @@ namespace OverplanUWP.ViewModel
                     if (p.Leader == true)
                     {
                         Navigation.GoToPage("LeaderHomeView", SelectedLoginHelp);
+                        LoginSucc = true;
                     }
                     else
                     {
                         Navigation.GoToPage("EmployeeHomeView", SelectedLoginHelp);
+                        LoginSucc = true;
                     }
                     break;
                 }
             }
+            if (LoginSucc != true)
+            {
+                DisplayWrongLogin();
+            }
+        }
+
+        public async void DisplayWrongLogin()
+        {
+            ContentDialog WrongLogin = new ContentDialog
+            {
+                Title = "Error!",
+                Content = "Username / Password is invalid!",
+                CloseButtonText = "Ok"
+            };
+            ContentDialogResult result = await WrongLogin.ShowAsync();
         }
     }
 }

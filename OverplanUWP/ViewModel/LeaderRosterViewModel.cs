@@ -115,8 +115,8 @@ namespace OverplanUWP.ViewModel
         {
             ContentDialog noAccessDialog = new ContentDialog
             {
-                Title = "Fejl! Dato og tid er indsat forkert",
-                Content = "Dato og tid til må ikke være før dato og tid fra",
+                Title = "Error! Date and time is wrong",
+                Content = "Date and time to cant be before from!",
                 CloseButtonText = "Ok"
             };
 
