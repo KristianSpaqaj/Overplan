@@ -14,40 +14,47 @@
     </Page.DataContext>
     <Grid>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <Button Command="{Binding PostLoginOverviewCommand, Mode=OneWay}" x:Name="PostLogin" Content="PostLogin" RenderTransformOrigin="0.5,0.5">
-                <Button.RenderTransform>
-                    <CompositeTransform TranslateX="150" TranslateY="184"/>
-                </Button.RenderTransform>
-            </Button>
-            <Button Command="{Binding GetLoginOverviewCommand, Mode=OneWay}" x:Name="GetLogin" Content="GetLogin" RenderTransformOrigin="0.5,0.5">
-                <Button.RenderTransform>
-                    <CompositeTransform TranslateX="237" TranslateY="152"/>
-                </Button.RenderTransform>
-            </Button>
-
-            <StackPanel Width="164" RenderTransformOrigin="0.5,0.5">
+            <StackPanel Width="348" RenderTransformOrigin="0.5,0.5" Height="219">
+                <StackPanel.Projection>
+                    <PlaneProjection RotationX="0" RotationZ="0"/>
+                </StackPanel.Projection>
                 <StackPanel.RenderTransform>
-                    <CompositeTransform TranslateX="-700" TranslateY="-25"/>
+                    <CompositeTransform TranslateX="-702" TranslateY="24"/>
                 </StackPanel.RenderTransform>
-                <TextBox x:Name="LoginName" Text="{Binding Username, Mode=TwoWay}"  TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5" HorizontalTextAlignment="Center">
+                <TextBox x:Name="LoginName" Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Name" TextWrapping="Wrap" Width="230" RenderTransformOrigin="0.5,0.5" Height="60" FontSize="30">
                     <TextBox.RenderTransform>
                         <CompositeTransform TranslateX="0" TranslateY="0"/>
                     </TextBox.RenderTransform>
                 </TextBox>
-                <TextBox x:Name="LoginPassword"  Text="{Binding Password, Mode=TwoWay}" TextWrapping="Wrap" Width="160" RenderTransformOrigin="0.5,0.5">
+                <TextBox x:Name="LoginPassword"  Text="{Binding Password, Mode=TwoWay}" PlaceholderText="Password" TextWrapping="Wrap" Width="230" RenderTransformOrigin="0.5,0.5" Height="60" FontSize="30" Background="#66FFFFFF">
                     <TextBox.RenderTransform>
                         <CompositeTransform TranslateX="0" TranslateY="0"/>
                     </TextBox.RenderTransform>
                 </TextBox>
-                <ToggleSwitch IsOn="{Binding Leader, Mode=TwoWay}"  OffContent="Employee" OnContent="Leader"  AutomationProperties.Name="simple ToggleSwitch" RenderTransformOrigin="0.5,0.5">
+                <ToggleSwitch IsOn="{Binding Leader, Mode=TwoWay}"  OffContent="Employee" OnContent="Leader"  AutomationProperties.Name="simple ToggleSwitch" RenderTransformOrigin="0.5,0.5" Height="30" Width="118">
                     <ToggleSwitch.RenderTransform>
-                        <CompositeTransform TranslateX="0" TranslateY="0"/>
+                        <CompositeTransform TranslateX="91" TranslateY="9" ScaleX="1.5" ScaleY="1.5"/>
                     </ToggleSwitch.RenderTransform>
                 </ToggleSwitch>
             </StackPanel>
-            <ListView ItemsSource="{Binding LoginOverviews}" Height="840" Width="178" RenderTransformOrigin="0.5,0.5" SelectedItem="{Binding SelectedUsername, Mode=TwoWay}">
+            <Button Command="{Binding PostLoginOverviewCommand, Mode=OneWay}" x:Name="PostLogin" Content="Create Login" RenderTransformOrigin="0.5,0.5" Width="100">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="186" TranslateY="-3" ScaleX="1.5" ScaleY="1.5"/>
+                </Button.RenderTransform>
+            </Button>
+            <Button Command="{Binding GetLoginOverviewCommand, Mode=OneWay}" x:Name="GetLogin" Content="Show Logins" RenderTransformOrigin="0.5,0.5" Width="100">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="341" TranslateY="-35" ScaleX="1.5" ScaleY="1.5"/>
+                </Button.RenderTransform>
+            </Button>
+            <Button Command="{Binding DeleteLoginOverviewCommand, Mode=OneWay}" Content="Delete Login" RenderTransformOrigin="0.5,0.5" Width="100">
+                <Button.RenderTransform>
+                    <CompositeTransform TranslateX="30" TranslateY="-67" ScaleX="1.5" ScaleY="1.5"/>
+                </Button.RenderTransform>
+            </Button>
+            <ListView ItemsSource="{Binding LoginOverviews}" Height="504" Width="232" RenderTransformOrigin="0.5,0.5" SelectedItem="{Binding SelectedUsername, Mode=TwoWay}" FontSize="24">
                 <ListView.RenderTransform>
-                    <CompositeTransform TranslateX="-250" TranslateY="-110"/>
+                    <CompositeTransform TranslateX="-150" TranslateY="-165" ScaleX="1.5" ScaleY="1.5"/>
                 </ListView.RenderTransform>
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -55,11 +62,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Command="{Binding DeleteLoginOverviewCommand, Mode=OneWay}" Content="DeleteLogin" RenderTransformOrigin="0.5,0.5" Width="94">
-                <Button.RenderTransform>
-                    <CompositeTransform TranslateX="50" TranslateY="-816"/>
-                </Button.RenderTransform>
-            </Button>
         </StackPanel>
     </Grid>
 </Page>
