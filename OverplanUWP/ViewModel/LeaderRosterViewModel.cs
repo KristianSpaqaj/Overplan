@@ -116,7 +116,7 @@ namespace OverplanUWP.ViewModel
             ContentDialog noAccessDialog = new ContentDialog
             {
                 Title = "Error! Date and time is wrong",
-                Content = "Date and time to cant be before from!",
+                Content = "The end of the shift can't be before the start!",
                 CloseButtonText = "Ok"
             };
 
