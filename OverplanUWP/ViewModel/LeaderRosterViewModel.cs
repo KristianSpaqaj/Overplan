@@ -41,10 +41,10 @@ namespace OverplanUWP.ViewModel
 
         public LeaderRosterViewModel()
         {
-            TimeFrom = DateTime.Now.TimeOfDay;
-            TimeTo = DateTime.Now.TimeOfDay;
+            TimeFrom = DateTime.Today.TimeOfDay;
+            TimeTo = TimeFrom;
             DateFrom = DateTime.Today;
-            DateTo = CombineDateTime(DateFrom, TimeTo);
+            DateTo = DateFrom;
 
             EmployeeOverviews = new ObservableCollection<EmployeeOverview>();
             ShiftOverviews = new ObservableCollection<ShiftOverview>();
@@ -101,7 +101,7 @@ namespace OverplanUWP.ViewModel
         {
             DateTime from = CombineDateTime(DateFrom, TimeFrom);
             DateTime to = CombineDateTime(DateTo, TimeTo);
-            if (to < from)
+            if (to <= from)
             {
                 DisplayNoAccessDialog();
             }
@@ -109,16 +109,16 @@ namespace OverplanUWP.ViewModel
             {
                 ShiftOverview shift = new ShiftOverview(ShiftID, SelectedEmployee.ID, from, to);
                 await Database.Post<ShiftOverview>(shift);
+                GetShiftOverview();
             }
-            GetShiftOverview();
         }
         //This method uses ContentDialog Class to make a Pop-up window for errors
         private async void DisplayNoAccessDialog()
         {
             ContentDialog noAccessDialog = new ContentDialog
             {
-                Title = "Error! Date and time is wrong",
-                Content = "The end of the shift can't be before the start!",
+                Title = "Error! Date or time is wrong",
+                Content = "The end of the shift can't be before or the same as the start!",
                 CloseButtonText = "Ok"
             };
 
