@@ -42,6 +42,7 @@ namespace OverplanUWP.ViewModel
         {
             LoginOverview login = new LoginOverview(Username, Password, Leader);
             await LogInDatabase.Post<LoginOverview>(login);
+            GetLoginOverview();
         }
 
         private async void GetLoginOverview()
@@ -57,6 +58,7 @@ namespace OverplanUWP.ViewModel
         {
             LoginOverview login = new LoginOverview(SelectedUsername.Username, Password, Leader);
             await LogInDatabase.Delete<LoginOverview>(login);
+            GetLoginOverview();
         }
 
         public async void LoginFrame_Navigated()

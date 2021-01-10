@@ -52,8 +52,6 @@ namespace OverplanUWP.View
                 case "leaderlogin":
                     LeaderView.Navigate(typeof(LeaderLoginView));
                     break;
-
-
             }
         }
     }

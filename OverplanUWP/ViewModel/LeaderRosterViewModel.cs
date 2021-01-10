@@ -75,12 +75,14 @@ namespace OverplanUWP.ViewModel
         {
             EmployeeOverview employee = new EmployeeOverview(EmployeeID, Name, Address, PhoneNumber);
             await Database.Post<EmployeeOverview>(employee);
+            GetEmployeeOverview();
         }
 
         private async void DeleteEmployeeOverview()
         {
             EmployeeOverview employee = new EmployeeOverview(SelectedEmployee.ID, Name, Address, PhoneNumber);
             await Database.Delete<EmployeeOverview>(employee);
+            GetEmployeeOverview();
         }
 
         //uses Get method from Database Class using ShiftOverview. It gets all the registered shifts.
@@ -108,7 +110,7 @@ namespace OverplanUWP.ViewModel
                 ShiftOverview shift = new ShiftOverview(ShiftID, SelectedEmployee.ID, from, to);
                 await Database.Post<ShiftOverview>(shift);
             }
-            
+            GetShiftOverview();
         }
         //This method uses ContentDialog Class to make a Pop-up window for errors
         private async void DisplayNoAccessDialog()
@@ -136,7 +138,9 @@ namespace OverplanUWP.ViewModel
 
             ShiftOverview shift = new ShiftOverview(SelectedShift.ID, EmployeeID, from, to);
             await Database.Delete<ShiftOverview>(shift);
+            GetShiftOverview();
         }
+
         private async void GetSpecificShiftOverview()
         {
             ShiftOverviews.Clear();
