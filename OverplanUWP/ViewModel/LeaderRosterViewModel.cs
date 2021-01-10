@@ -134,7 +134,7 @@ namespace OverplanUWP.ViewModel
             DateTime from = CombineDateTime(DateFrom, TimeFrom);
             DateTime to = CombineDateTime(DateTo, TimeTo);
 
-            ShiftOverview shift = new ShiftOverview(SelectedShift.ID, SelectedEmployee.ID, from, to);
+            ShiftOverview shift = new ShiftOverview(SelectedShift.ID, EmployeeID, from, to);
             await Database.Delete<ShiftOverview>(shift);
         }
         private async void GetSpecificShiftOverview()
