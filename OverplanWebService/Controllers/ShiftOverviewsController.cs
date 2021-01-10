@@ -17,16 +17,16 @@ namespace OverplanWebService.Controllers
         private OverplanContext db = new OverplanContext();
 
         // GET: api/ShiftOverviews
-        public IQueryable<ShiftOverview> GetShiftOverview()
+        public IQueryable<ShiftOverview> GetShiftOverviews()
         {
-            return db.ShiftOverview;
+            return db.ShiftOverviews;
         }
 
         // GET: api/ShiftOverviews/5
         [ResponseType(typeof(ShiftOverview))]
         public IHttpActionResult GetShiftOverview(int id)
         {
-            ShiftOverview shiftOverview = db.ShiftOverview.Find(id);
+            ShiftOverview shiftOverview = db.ShiftOverviews.Find(id);
             if (shiftOverview == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace OverplanWebService.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.ShiftOverview.Add(shiftOverview);
+            db.ShiftOverviews.Add(shiftOverview);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = shiftOverview.ShiftID }, shiftOverview);
@@ -89,13 +89,13 @@ namespace OverplanWebService.Controllers
         [ResponseType(typeof(ShiftOverview))]
         public IHttpActionResult DeleteShiftOverview(int id)
         {
-            ShiftOverview shiftOverview = db.ShiftOverview.Find(id);
+            ShiftOverview shiftOverview = db.ShiftOverviews.Find(id);
             if (shiftOverview == null)
             {
                 return NotFound();
             }
 
-            db.ShiftOverview.Remove(shiftOverview);
+            db.ShiftOverviews.Remove(shiftOverview);
             db.SaveChanges();
 
             return Ok(shiftOverview);
@@ -112,7 +112,7 @@ namespace OverplanWebService.Controllers
 
         private bool ShiftOverviewExists(int id)
         {
-            return db.ShiftOverview.Count(e => e.ShiftID == id) > 0;
+            return db.ShiftOverviews.Count(e => e.ShiftID == id) > 0;
         }
     }
 }

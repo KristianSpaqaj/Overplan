@@ -164,13 +164,15 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\EmployeeOverviewsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RostersController.cs" />
+    <Compile Include="Controllers\LoginOverviewsController.cs" />
     <Compile Include="Controllers\ShiftOverviewsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="database_firewall_rules.cs" />
     <Compile Include="EmployeeOverview.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LoginOverview.cs" />
     <Compile Include="OverplanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roster.cs" />
@@ -208,6 +210,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="libman.json" />
     <None Include="Properties\PublishProfiles\OverplanWebService20201120130529 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\OverplanWebService20210110132832 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

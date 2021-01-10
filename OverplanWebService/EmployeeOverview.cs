@@ -12,8 +12,7 @@ namespace OverplanWebService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EmployeeOverview()
         {
-            ShiftOverview = new HashSet<ShiftOverview>();
-            ShiftOverview1 = new HashSet<ShiftOverview>();
+            ShiftOverviews = new HashSet<ShiftOverview>();
         }
 
         [Key]
@@ -25,16 +24,13 @@ namespace OverplanWebService
 
         [Required]
         [StringLength(50)]
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         [Required]
         [StringLength(8)]
-        public string Number { get; set; }
+        public string PhoneNumber { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShiftOverview> ShiftOverview { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShiftOverview> ShiftOverview1 { get; set; }
+        public virtual ICollection<ShiftOverview> ShiftOverviews { get; set; }
     }
 }

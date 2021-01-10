@@ -17,16 +17,16 @@ namespace OverplanWebService.Controllers
         private OverplanContext db = new OverplanContext();
 
         // GET: api/EmployeeOverviews
-        public IQueryable<EmployeeOverview> GetEmployeeOverview()
+        public IQueryable<EmployeeOverview> GetEmployeeOverviews()
         {
-            return db.EmployeeOverview;
+            return db.EmployeeOverviews;
         }
 
         // GET: api/EmployeeOverviews/5
         [ResponseType(typeof(EmployeeOverview))]
         public IHttpActionResult GetEmployeeOverview(int id)
         {
-            EmployeeOverview employeeOverview = db.EmployeeOverview.Find(id);
+            EmployeeOverview employeeOverview = db.EmployeeOverviews.Find(id);
             if (employeeOverview == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace OverplanWebService.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.EmployeeOverview.Add(employeeOverview);
+            db.EmployeeOverviews.Add(employeeOverview);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = employeeOverview.EmployeeID }, employeeOverview);
@@ -89,13 +89,13 @@ namespace OverplanWebService.Controllers
         [ResponseType(typeof(EmployeeOverview))]
         public IHttpActionResult DeleteEmployeeOverview(int id)
         {
-            EmployeeOverview employeeOverview = db.EmployeeOverview.Find(id);
+            EmployeeOverview employeeOverview = db.EmployeeOverviews.Find(id);
             if (employeeOverview == null)
             {
                 return NotFound();
             }
 
-            db.EmployeeOverview.Remove(employeeOverview);
+            db.EmployeeOverviews.Remove(employeeOverview);
             db.SaveChanges();
 
             return Ok(employeeOverview);
@@ -112,7 +112,7 @@ namespace OverplanWebService.Controllers
 
         private bool EmployeeOverviewExists(int id)
         {
-            return db.EmployeeOverview.Count(e => e.EmployeeID == id) > 0;
+            return db.EmployeeOverviews.Count(e => e.EmployeeID == id) > 0;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace OverplanUWP.Common
 {
     public static class Database
     {
-        static string serverUrl = "https://webservicefornu20201223111303.azurewebsites.net/";
+        static string serverUrl = "https://overplanwebservice20210110132832.azurewebsites.net/";
         private static JsonSerializerSettings settings = new JsonSerializerSettings();
         private static IsoDateTimeConverter dateConverter = new IsoDateTimeConverter
         {

@@ -12,44 +12,44 @@ using OverplanWebService;
 
 namespace OverplanWebService.Controllers
 {
-    public class RostersController : ApiController
+    public class LoginOverviewsController : ApiController
     {
         private OverplanContext db = new OverplanContext();
 
-        // GET: api/Rosters
-        public IQueryable<Roster> GetRoster()
+        // GET: api/LoginOverviews
+        public IQueryable<LoginOverview> GetLoginOverviews()
         {
-            return db.Roster;
+            return db.LoginOverviews;
         }
 
-        // GET: api/Rosters/5
-        [ResponseType(typeof(Roster))]
-        public IHttpActionResult GetRoster(int id)
+        // GET: api/LoginOverviews/5
+        [ResponseType(typeof(LoginOverview))]
+        public IHttpActionResult GetLoginOverview(string id)
         {
-            Roster roster = db.Roster.Find(id);
-            if (roster == null)
+            LoginOverview loginOverview = db.LoginOverviews.Find(id);
+            if (loginOverview == null)
             {
                 return NotFound();
             }
 
-            return Ok(roster);
+            return Ok(loginOverview);
         }
 
-        // PUT: api/Rosters/5
+        // PUT: api/LoginOverviews/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutRoster(int id, Roster roster)
+        public IHttpActionResult PutLoginOverview(string id, LoginOverview loginOverview)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != roster.ShiftID)
+            if (id != loginOverview.Username)
             {
                 return BadRequest();
             }
 
-            db.Entry(roster).State = EntityState.Modified;
+            db.Entry(loginOverview).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace OverplanWebService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RosterExists(id))
+                if (!LoginOverviewExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace OverplanWebService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Rosters
-        [ResponseType(typeof(Roster))]
-        public IHttpActionResult PostRoster(Roster roster)
+        // POST: api/LoginOverviews
+        [ResponseType(typeof(LoginOverview))]
+        public IHttpActionResult PostLoginOverview(LoginOverview loginOverview)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Roster.Add(roster);
+            db.LoginOverviews.Add(loginOverview);
 
             try
             {
@@ -87,7 +87,7 @@ namespace OverplanWebService.Controllers
             }
             catch (DbUpdateException)
             {
-                if (RosterExists(roster.ShiftID))
+                if (LoginOverviewExists(loginOverview.Username))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace OverplanWebService.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = roster.ShiftID }, roster);
+            return CreatedAtRoute("DefaultApi", new { id = loginOverview.Username }, loginOverview);
         }
 
-        // DELETE: api/Rosters/5
-        [ResponseType(typeof(Roster))]
-        public IHttpActionResult DeleteRoster(int id)
+        // DELETE: api/LoginOverviews/5
+        [ResponseType(typeof(LoginOverview))]
+        public IHttpActionResult DeleteLoginOverview(string id)
         {
-            Roster roster = db.Roster.Find(id);
-            if (roster == null)
+            LoginOverview loginOverview = db.LoginOverviews.Find(id);
+            if (loginOverview == null)
             {
                 return NotFound();
             }
 
-            db.Roster.Remove(roster);
+            db.LoginOverviews.Remove(loginOverview);
             db.SaveChanges();
 
-            return Ok(roster);
+            return Ok(loginOverview);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace OverplanWebService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool RosterExists(int id)
+        private bool LoginOverviewExists(string id)
         {
-            return db.Roster.Count(e => e.ShiftID == id) > 0;
+            return db.LoginOverviews.Count(e => e.Username == id) > 0;
         }
     }
 }
