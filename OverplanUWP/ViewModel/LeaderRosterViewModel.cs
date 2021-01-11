@@ -69,7 +69,7 @@ namespace OverplanUWP.ViewModel
                 EmployeeOverviews.Add(e);
             }
         }
-
+        // Vi har en get metode til at refreshe listen
         //Uses Post method from Database Class using EmployeeOverview. It posts an Employee to the database.
         private async void PostEmployeeOverview()
         {

@@ -37,7 +37,7 @@ namespace OverplanUWP.ViewModel
             LoginCheckCommand = new RelayCommand(LoginFrame_Navigated);
             DeleteLoginOverviewCommand = new RelayCommand(DeleteLoginOverview);
         }
-
+        // Vi har en get metode til at refreshe listen
         private async void PostLoginOverview()
         {
             LoginOverview login = new LoginOverview(Username, Password, Leader);
@@ -60,7 +60,7 @@ namespace OverplanUWP.ViewModel
             await LogInDatabase.Delete<LoginOverview>(login);
             GetLoginOverview();
         }
-
+        // dette void er lavet til at filtrere og checke logins om de er rigtige og navigere leader eller employee til deres pages
         public async void LoginFrame_Navigated()
         {
             var login = LogInDatabase.Get<LoginOverview>();

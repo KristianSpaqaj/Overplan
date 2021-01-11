@@ -16,13 +16,13 @@ namespace OverplanUWP.Commands
             rootFrame.Navigate(type);
         }
 
-
+        // den returner framen
         private static Frame GetRootFrame()
         {
             return Window.Current.Content as Frame;
         }
 
-
+        // Her kan den skifte hvad for en slags frame
         private static Type GetPageType(string page, string pageNameSpace = "OverplanUWP.View")
         {
             Type type = Type.GetType(pageNameSpace + "." + page);
