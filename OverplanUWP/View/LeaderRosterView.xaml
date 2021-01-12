@@ -62,11 +62,11 @@
                 
                 <StackPanel Orientation="Horizontal">
                     <CalendarDatePicker Date="{Binding DateFrom, Mode=TwoWay}"/>
-                    <TimePicker Time="{Binding TimeFrom,Mode=TwoWay}"/>
+                    <TimePicker Time="{Binding TimeFrom,Mode=TwoWay}" ClockIdentifier="24HourClock"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CalendarDatePicker Date="{Binding DateTo, Mode=TwoWay}"/>
-                    <TimePicker Time="{Binding TimeTo, Mode=TwoWay}"/>
+                    <TimePicker Time="{Binding TimeTo, Mode=TwoWay}" ClockIdentifier="24HourClock"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button Command="{Binding GetSpecificShiftOverviewCommand, Mode=OneWay}" Content="Filter Shift" Width="100"/>
